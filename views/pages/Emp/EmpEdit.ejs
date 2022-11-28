@@ -1,0 +1,47 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Edit employee</h2>
+    <form class="form" onsubmit="return validateForm();" novalidate>
+        <label for="fname">First name: <span class="required-field">*</span></label>
+        <input type="text" id="fname" name="fname" value="Sample value" required>
+        <span id="errorFname" class="errors-text"></span>
+        <label for="lname">Lastname: <span class="required-field">*</span></label>
+        <input type="text" id="lname" name="lname" value="Sample value" required>
+        <span id="errorLname" class="errors-text"></span>
+        <label for="employedFrom">Employed since: <span class="required-field">*</span></label>
+        <input type="date" id="employedFrom" name="employedFrom" value="1990-01-01" required>
+        <span id="errorEmployedSince" class="errors-text"></span>
+        <label for="employedTo">Employment termination: </label>
+        <input type="date" id="employedTo" name="employedTo" value="1990-01-01">
+        <span id="errorEmployedTo" class="errors-text"></span>
+        <label for="phone">Phone number: <span class="required-field">*</span></label>
+        <input type="text" id="phone" name="phone" value="1234567890" required>
+        <span id="errorPhoneNumber" class="errors-text"></span>
+        <label for="email">Email address: <span class="required-field">*</span></label>
+        <input type="email" id="email" name="email" value="Sample@value.com" required>
+        <span id="errorEmail" class="errors-text"></span>
+        <label for="supervisor">Supervised by: </label>
+        <select name="supervisor" id="supervisor" multiple>
+            <option selected value="none">--Select supervisor--</option>
+            <option value="supervisor1">Jane Doe</option>
+        </select>
+        <label for="dept">Department: <span class="required-field">*</span></label>
+        <select name="dept" id="dept" required>
+            <option disabled selected value="">--Select department--</option>
+            <option value="dept1">Dept1</option>
+            <option value="dept2">Dept2</option>
+            <option value="dept3">Dept3</option>
+        </select>
+        <span id="errorDept" class="errors-text"></span>
+        <div class="form-buttons">
+            <input type="submit" value="Save changes" class="button-submit">
+            <a href="Employee.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+    <script type="application/javascript" src="../../../public/JS/ValidationCommon.js"></script>
+    <script type="application/javascript" src="../../../public/JS/ValidationEmpEdit.js"></script>
+</main>
+<%- include('../../fragments/footer.ejs') %>

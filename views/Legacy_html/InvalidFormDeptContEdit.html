@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../public/CSS/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edit Contract</title>
+</head>
+<body>
+<Header>
+    <h1>TIN-Company</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
+         alt="work in progress sign" width=100 height=100>
+</Header>
+<section>
+    <nav>
+        <ul>
+            <li><a href="../index.ejs">Main Page</a></li>
+            <li><a href="../pages/Emp/Employee.ejs">Employee</a></li>
+            <li><a href="../pages/Dept/Department.ejs">Department</a></li>
+            <li><a href="../pages/Contract/Contract.ejs" class="active">Contract</a></li>
+        </ul>
+    </nav>
+</section>
+<main>
+    <h2>Edit Contract</h2>
+    <form class="form" onsubmit="return validateForm()" novalidate>
+        <label for="desc">Description: <span class="required-field">*</span></label>
+        <input type="text" id="desc" name="desc" value="Sample value" required class="error-input">
+        <span id="errorDescription" class="errors-text">Field is required!</span>
+        <label for="startDate">Start date: <span class="required-field">*</span></label>
+        <input type="date" id="startDate" name="startDate" value="1990-01-01" required class="error-input">
+        <span id="errorStartDate" class="errors-text">Field is required!</span>
+        <label for="dueDate">Due date: </label>
+        <input type="date" id="dueDate" name="dueDate" value="1990-01-01">
+        <span id="errorDueDate" class="errors-text"></span>
+        <label for="deptContName">Responsible departments: <span class="required-field">*</span></label>
+        <select name="deptContName" id="deptContName" required class="error-input" multiple>
+            <option disabled selected value="">--Select departments--</option>
+            <option value="dept1">Dept1</option>
+            <option value="dept2">Dept2</option>
+            <option value="dept3">Dept3</option>
+        </select>
+        <span id="errorDeptContName" class="errors-text">Field is required!</span>
+        <p id="errorsSummaryContract" class="errors-text">Errors!</p>
+        <div class="form-buttons">
+            <input type="submit" value="Save changes" class="button-submit">
+            <a href="../pages/Contract/Contract.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</main>
+<footer>
+    Filip Schulz, s22455
+</footer>
+</body>
+<script type="application/javascript" src="../../public/JS/ValidationCommon.js"></script>
+<script type="application/javascript" src="../../public/JS/ValidationContract.js"></script>
+</html>

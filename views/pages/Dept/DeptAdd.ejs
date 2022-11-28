@@ -1,0 +1,22 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Add new department</h2>
+    <form class="form" onsubmit="return validateForm();" novalidate>
+        <label for="name">Department name: <span class="required-field">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <span id="errorDeptName" class="errors-text"></span>
+        <label for="location">Department location: <span class="required-field">*</span></label>
+        <input type="text" id="location" name="location" placeholder="Location" required>
+        <span id="errorDeptLoc" class="errors-text"></span>
+        <div class="form-buttons">
+            <input type="submit" value="Add" class="button-submit">
+            <a href="Department.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+    <script type="application/javascript" src="../../../public/JS/ValidationCommon.js"></script>
+    <script type="application/javascript" src="../../../public/JS/ValidationDept.js"></script>
+</main>
+<%- include('../../fragments/footer.ejs') %>

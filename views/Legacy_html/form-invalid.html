@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../public/CSS/style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Edit Employee</title>
+</head>
+<body>
+<Header>
+    <h1>TIN-Company</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
+         alt="work in progress sign" width=100 height=100>
+</Header>
+<section>
+    <nav>
+        <ul>
+            <li><a href="../index.ejs">Main Page</a></li>
+            <li><a href="../pages/Emp/Employee.ejs" class="active">Employee</a></li>
+            <li><a href="../pages/Dept/Department.ejs">Department</a></li>
+            <li><a href="../pages/Contract/Contract.ejs">Contract</a></li>
+        </ul>
+    </nav>
+</section>
+<main>
+    <h2>Edit employee</h2>
+    <form class="form" onsubmit="return validateForm();" novalidate>
+        <label for="fnameError">First name: <span class="required-field">*</span></label>
+        <input type="text" id="fnameError" name="fname" value="Sample value" required class="error-input">
+        <span id="errorFname" class="errors-text">Field is required!</span>
+        <label for="lnameError">Lastname: <span class="required-field">*</span></label>
+        <input type="text" id="lnameError" name="lname" value="Sample value" required class="error-input">
+        <span id="errorLname" class="errors-text">Field is required!</span>
+        <label for="employedFrom">Employed since: <span class="required-field">*</span></label>
+        <input type="date" id="employedFrom" name="employedFrom" value="1990-01-01" required class="error-input">
+        <span id="errorEmployedSince" class="errors-text">Field is required!</span>
+        <label for="employedTo">Employment termination: </label>
+        <input type="date" id="employedTo" name="employedTo" value="1990-01-01">
+        <span id="errorEmployedTo" class="errors-text">Date cannot be lower than employment since!</span>
+        <label for="phone">Phone number: <span class="required-field">*</span></label>
+        <input type="text" id="phone" name="phone" value="Sample value" required class="error-input">
+        <span id="errorPhoneNumber" class="errors-text">Field is required!></span>
+        <label for="email">Email address: <span class="required-field">*</span></label>
+        <input type="email" id="email" name="email" value="Sample@value.com" required class="error-input">
+        <span id="errorEmail" class="errors-text">Field is required!</span>
+        <label for="supervisor">Supervised by: </label>
+        <select name="supervisor" id="supervisor" multiple>
+            <option selected value="none">--Select supervisor--</option>
+            <option value="supervisor1">Jane Doe</option>
+        </select>
+        <label for="dept">Department: <span class="required-field">*</span></label>
+        <select name="dept" id="dept" required class="error-input">
+            <option disabled selected value="">--Select department--</option>
+            <option value="dept1">Dept1</option>
+            <option value="dept2">Dept2</option>
+            <option value="dept3">Dept3</option>
+        </select>
+        <span id="errorDept" class="errors-text">Field is required!</span>
+        <p id="errorsSummary" class="errors-text">Errors!</p>
+        <div class="form-buttons">
+            <input type="submit" value="Save changes" class="button-submit">
+            <a href="../pages/Emp/Employee.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</main>
+<footer>
+    Filip Schulz, s22455
+</footer>
+</body>
+<script type="application/javascript" src="../../public/JS/ValidationCommon.js"></script>
+<script type="application/javascript" src="../../public/JS/ValidationEmpEdit.js"></script>
+</html>

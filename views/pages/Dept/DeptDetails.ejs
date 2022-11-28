@@ -1,0 +1,28 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Department Details</h2>
+    <form class="form">
+        <label for="name">Department name: </label>
+        <input type="text" id="name" name="name" value="Sample value" disabled>
+        <label for="location">Department location: </label>
+        <input type="text" id="location" name="location" value="Sample value" disabled>
+        <label for="contracts">Contracts: </label>
+        <select name="contracts" id="contracts">
+            <option disabled selected>-- Contracts --</option>
+            <option value="contract1" disabled>Contract1</option>
+            <option value="contract2" disabled>Contract2</option>
+            <option value="contract2" disabled>Contract3</option>
+        </select>
+
+        <div class="form-buttons">
+            <a href="DeptEdit.ejs" class="list-actions-button-edit">
+                Edit
+            </a>
+            <a href="Department.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

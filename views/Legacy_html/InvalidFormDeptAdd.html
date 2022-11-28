@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../public/CSS/style.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>New Department</title>
+</head>
+<body>
+<Header>
+    <h1>TIN-Company</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
+         alt="work in progress sign" width=100 height=100>
+</Header>
+<section>
+    <nav>
+        <ul>
+            <li><a href="../index.ejs">Main Page</a></li>
+            <li><a href="../pages/Emp/Employee.ejs">Employee</a></li>
+            <li><a href="../pages/Dept/Department.ejs" class="active">Department</a></li>
+            <li><a href="../pages/Contract/Contract.ejs">Contract</a></li>
+        </ul>
+    </nav>
+</section>
+<main>
+    <h2>Add new department</h2>
+    <form class="form">
+        <label for="name">Department name: <span class="required-field">*</span></label>
+        <input type="text" id="name" name="name" placeholder="Name" required class="error-input">
+        <span id="errorDeptName" class="errors-text">Field is required!</span>
+        <label for="location">Department location: <span class="required-field">*</span></label>
+        <input type="text" id="location" name="location" placeholder="Location" required class="error-input">
+        <span id="errorDeptLoc" class="errors-text">Field is required!</span>
+        <p id="errorsSummaryDept" class="errors-text">Errors!</p>
+        <div class="form-buttons">
+            <input type="submit" value="Add" class="button-submit">
+            <a href="../pages/Dept/Department.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</main>
+<footer>
+    Filip Schulz, s22455
+</footer>
+</body>
+<script type="application/javascript" src="../../public/JS/ValidationCommon.js"></script>
+<script type="application/javascript" src="../../public/JS/ValidationDept.js"></script>
+</html>

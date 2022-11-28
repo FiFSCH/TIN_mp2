@@ -1,0 +1,36 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Employee Details</h2>
+    <form class="form">
+        <label for="fname">First name: </label>
+        <input type="text" id="fname" name="fname" value="Sample value" disabled>
+        <label for="lname">Lastname: </label>
+        <input type="text" id="lname" name="lname" value="Sample value" disabled>
+        <label for="employedFrom">Employed since: </label>
+        <input type="date" id="employedFrom" name="employedFrom" value="1990-01-01" disabled>
+        <label for="employedTo">Employment termination: </label>
+        <input type="date" id="employedTo" name="employedTo" value="1990-01-01" disabled>
+        <label for="phone">Phone number: </label>
+        <input type="text" id="phone" name="phone" value="Sample value" disabled>
+        <label for="email">Email address: </label>
+        <input type="email" id="email" name="email" value="Sample@value.com" disabled>
+        <label for="supervisor">Supervises: </label>
+        <select name="supervisor" id="supervisor" multiple>
+            <option selected value="none">--Subordinates--</option>
+            <option value="subordinate1" disabled>EMP1</option>
+        </select>
+        <label for="dept">Department: </label>
+        <input type="text" id="dept" name="dept" value="Sample value" disabled>
+
+        <div class="form-buttons">
+            <a href="EmpEdit.ejs" class="list-actions-button-edit">
+                Edit
+            </a>
+            <a href="Employee.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

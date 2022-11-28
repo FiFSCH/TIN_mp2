@@ -1,0 +1,50 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Departments</h2>
+    <table id="DeptsList" class="table-list">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td data-label="Name">Dept1</td>
+            <td data-label="Location">Oborniki Śląskie, Poland</td>
+            <td>
+                <ul class="list-actions">
+                    <li><a href="DeptDetails.ejs" class="list-actions-button-details">Details</a></li>
+                    <li><a href="" class="list-actions-button-delete"
+                           onclick="return confirm('Are you sure?')">Delete</a></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td data-label="Name">Dept2</td>
+            <td data-label="Location">Murowana Goślina, Poland</td>
+            <td>
+                <ul class="list-actions">
+                    <li><a href="DeptDetails.ejs" class="list-actions-button-details">Details</a></li>
+                    <li><a href="" class="list-actions-button-delete"
+                           onclick="return confirm('Are you sure?')">Delete</a></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td data-label="Name">Dept3</td>
+            <td data-label="Location">Raciąż, Poland</td>
+            <td>
+                <ul class="list-actions">
+                    <li><a href="DeptDetails.ejs" class="list-actions-button-details">Details</a></li>
+                    <li><a href="" class="list-actions-button-delete"
+                           onclick="return confirm('Are you sure?')">Delete</a></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p><a href="DeptAdd.ejs" class="button-add"> Add new department </a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

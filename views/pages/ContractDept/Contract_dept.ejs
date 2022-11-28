@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../../../public/CSS/style.css">
+    <meta charset="UTF-8">
+    <title>Contract Details</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<Header>
+    <h1>TIN-Company</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
+         alt="work in progress sign" width=100 height=100>
+</Header>
+<section>
+    <nav>
+        <ul>
+            <li><a href="../../index.ejs">Main Page</a></li>
+            <li><a href="../Emp/Employee.ejs">Employee</a></li>
+            <li><a href="../Dept/Department.ejs">Department</a></li>
+            <li><a href="../Contract/Contract.ejs" class="active">Contract</a></li>
+        </ul>
+    </nav>
+</section>
+<main>
+    <h2>Contract Details</h2>
+    <form class="form">
+        <label for="desc">Description: </label>
+        <input type="text" id="desc" name="desc" value="Sample value" disabled>
+        <label for="startDate">Start date: </label>
+        <input type="date" id="startDate" name="startDate" value="1990-01-01" disabled>
+        <label for="dueDate">Due date: </label>
+        <input type="date" id="dueDate" name="dueDate" value="1990-01-01" disabled>
+        <div class="form-buttons">
+            <a href="DeptContEdit.ejs" class="list-actions-button-edit">
+                Edit
+            </a>
+            <a href="../Contract/Contract.ejs" class="button-cancel">
+                Cancel
+            </a>
+        </div>
+    </form>
+    <table id="responsibleDepartment" class="table-list-resDept">
+        <thead>
+        <tr>
+            <th>Responsible Department</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td data-label="Department">SampleDept</td>
+            <td data-label="Location">SampleLocation</td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+<footer>
+    Filip Schulz, s22455
+</footer>
+</body>
+</html>
