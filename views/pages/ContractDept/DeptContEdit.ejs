@@ -1,27 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="../../../public/CSS/style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Edit Contract</title>
-</head>
-<body>
-<Header>
-    <h1>TIN-Company</h1>
-    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
-         alt="work in progress sign" width=100 height=100>
-</Header>
-<section>
-    <nav>
-        <ul>
-            <li><a href="../../index.ejs">Main Page</a></li>
-            <li><a href="../Emp/Employee.ejs">Employee</a></li>
-            <li><a href="../Dept/Department.ejs">Department</a></li>
-            <li><a href="../Contract/Contract.ejs" class="active">Contract</a></li>
-        </ul>
-    </nav>
-</section>
+<%- include('../../fragments/header.ejs') %>
 <main>
     <h2>Edit Contract</h2>
     <form class="form" onsubmit="return validateForm()" novalidate>
@@ -51,10 +28,6 @@
     </form>
 
 </main>
-<footer>
-    Filip Schulz, s22455
-</footer>
-</body>
 <script type="application/javascript" src="../../../public/JS/ValidationCommon.js"></script>
 <script type="application/javascript" src="../../../public/JS/ValidationContract.js"></script>
-</html>
+<%- include('../../fragments/footer.ejs') %>
