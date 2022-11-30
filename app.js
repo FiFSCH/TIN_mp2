@@ -9,7 +9,11 @@ const empRouter = require('./routes/EmpRoute');
 const deptRouter = require('./routes/DeptRoute');
 const contDeptRouter = require('./routes/ContDeptRoute');
 const contRouter = require('./routes/ContractRoute');
+const sequalizeInit = require('./config/sequalize/init');
 
+sequalizeInit().catch(err => {
+  console.log(err);
+});
 
 var app = express();
 

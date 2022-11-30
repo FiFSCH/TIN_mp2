@@ -40,7 +40,7 @@ const Employee = sequalize.define('Employee',{
     },
     idDepartment: {
         type: Sequalize.STRING,
-        allowNull: false,
+        allowNull: true,
     }
 });
 module.exports = Employee;
