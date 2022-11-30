@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize('mysql', 'root', 'root', {
+const sequelize = new Sequelize('tin-mp2', 'root', 'root', {
     dialect: 'mysql',
     host: 'localhost'
 });
