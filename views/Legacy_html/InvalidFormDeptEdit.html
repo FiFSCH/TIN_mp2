@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../public/CSS/style.css"/>
+    <link href="../../public/CSS/style.css" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
     <title>Edit Department</title>
 </head>
 <body>
 <Header>
     <h1>TIN-Company</h1>
-    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
-         alt="work in progress sign" width=100 height=100>
+    <img alt="work in progress sign" height=100
+         id="WorkInProgress" src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" width=100>
 </Header>
 <section>
     <nav>
         <ul>
             <li><a href="../index.ejs">Main Page</a></li>
             <li><a href="../pages/Emp/Employee.ejs">Employee</a></li>
-            <li><a href="../pages/Dept/Department.ejs" class="active">Department</a></li>
+            <li><a class="active" href="../pages/Dept/Department.ejs">Department</a></li>
             <li><a href="../pages/Contract/Contract.ejs">Contract</a></li>
         </ul>
     </nav>
 </section>
 <main>
     <h2>Edit department</h2>
-    <form class="form" onsubmit="return validateForm()" novalidate>
+    <form class="form" novalidate onsubmit="return validateForm()">
         <label for="name">Department name: <span class="required-field">*</span></label>
-        <input type="text" id="name" name="name" value="Sample value" required class="error-input">
-        <span id="errorDeptName" class="errors-text">Field is required!</span>
+        <input class="error-input" id="name" name="name" required type="text" value="Sample value">
+        <span class="errors-text" id="errorDeptName">Field is required!</span>
         <label for="location">Department location: <span class="required-field">*</span></label>
-        <input type="text" id="location" name="location" value="Sample value" required class="error-input">
-        <span id="errorDeptLoc" class="errors-text">Field is required!</span>
-        <p id="errorsSummaryDept" class="errors-text">Errors!</p>
+        <input class="error-input" id="location" name="location" required type="text" value="Sample value">
+        <span class="errors-text" id="errorDeptLoc">Field is required!</span>
+        <p class="errors-text" id="errorsSummaryDept">Errors!</p>
         <div class="form-buttons">
-            <input type="submit" value="Save changes" class="button-submit">
-            <a href="../pages/Dept/Department.ejs" class="button-cancel">
+            <input class="button-submit" type="submit" value="Save changes">
+            <a class="button-cancel" href="../pages/Dept/Department.ejs">
                 Cancel
             </a>
         </div>
@@ -45,6 +45,6 @@
     Filip Schulz, s22455
 </footer>
 </body>
-<script type="application/javascript" src="../../public/JS/ValidationCommon.js"></script>
-<script type="application/javascript" src="../../public/JS/ValidationDept.js"></script>
+<script src="../../public/JS/ValidationCommon.js" type="application/javascript"></script>
+<script src="../../public/JS/ValidationDept.js" type="application/javascript"></script>
 </html>

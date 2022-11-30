@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../public/CSS/style.css">
+    <link href="../../public/CSS/style.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
     <title>New Contract</title>
 </head>
 <body>
 <Header>
     <h1>TIN-Company</h1>
-    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
-         alt="work in progress sign" width=100 height=100>
+    <img alt="work in progress sign" height=100
+         id="WorkInProgress" src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" width=100>
 </Header>
 <section>
     <nav>
@@ -18,34 +18,34 @@
             <li><a href="../index.ejs">Main Page</a></li>
             <li><a href="../pages/Emp/Employee.ejs">Employee</a></li>
             <li><a href="../pages/Dept/Department.ejs">Department</a></li>
-            <li><a href="../pages/Contract/Contract.ejs" class="active">Contract</a></li>
+            <li><a class="active" href="../pages/Contract/Contract.ejs">Contract</a></li>
         </ul>
     </nav>
 </section>
 <main>
     <h2>Add new contract</h2>
-    <form class="form" onsubmit="return validateForm()" novalidate>
+    <form class="form" novalidate onsubmit="return validateForm()">
         <label for="desc">Description: <span class="required-field">*</span></label>
-        <input type="text" id="desc" name="desc" placeholder="Description" required class="error-input">
-        <span id="errorDescription" class="errors-text">Field is required!</span>
+        <input class="error-input" id="desc" name="desc" placeholder="Description" required type="text">
+        <span class="errors-text" id="errorDescription">Field is required!</span>
         <label for="startDate">Start date: <span class="required-field">*</span></label>
-        <input type="date" id="startDate" name="startDate" required class="error-input">
-        <span id="errorStartDate" class="errors-text">Field is required!</span>
+        <input class="error-input" id="startDate" name="startDate" required type="date">
+        <span class="errors-text" id="errorStartDate">Field is required!</span>
         <label for="dueDate">Due date: </label>
-        <input type="date" id="dueDate" name="dueDate">
-        <span id="errorDueDate" class="errors-text"></span>
+        <input id="dueDate" name="dueDate" type="date">
+        <span class="errors-text" id="errorDueDate"></span>
         <label for="deptContName">Responsible departments: <span class="required-field">*</span></label>
-        <select name="deptContName" id="deptContName" required class="error-input" multiple>
+        <select class="error-input" id="deptContName" multiple name="deptContName" required>
             <option disabled selected value="">--Select departments--</option>
             <option value="dept1">Dept1</option>
             <option value="dept2">Dept2</option>
             <option value="dept3">Dept3</option>
         </select>
-        <span id="errorDeptContName" class="errors-text">Field is required!</span>
-        <p id="errorsSummaryContract" class="errors-text">Errors!</p>
+        <span class="errors-text" id="errorDeptContName">Field is required!</span>
+        <p class="errors-text" id="errorsSummaryContract">Errors!</p>
         <div class="form-buttons">
-            <input type="submit" value="Add" class="button-submit">
-            <a href="../pages/Contract/Contract.ejs" class="button-cancel">
+            <input class="button-submit" type="submit" value="Add">
+            <a class="button-cancel" href="../pages/Contract/Contract.ejs">
                 Cancel
             </a>
         </div>
@@ -56,6 +56,6 @@
     Filip Schulz, s22455
 </footer>
 </body>
-<script type="application/javascript" src="../../public/JS/ValidationCommon.js"></script>
-<script type="application/javascript" src="../../public/JS/ValidationContract.js"></script>
+<script src="../../public/JS/ValidationCommon.js" type="application/javascript"></script>
+<script src="../../public/JS/ValidationContract.js" type="application/javascript"></script>
 </html>

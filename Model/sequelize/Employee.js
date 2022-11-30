@@ -1,12 +1,12 @@
 const Sequalize = require('sequelize');
-const sequalize = require('../../config/sequalize/sequalize.js');
+const sequalize = require('../../config/sequelize/sequelize.js');
 
-const Employee = sequalize.define('Employee',{
-    idEmployee:{
-       type: Sequalize.INTEGER,
-       autoIncrement: true,
-       allowNull: false,
-       primaryKey: true,
+const Employee = sequalize.define('Employee', {
+    idEmployee: {
+        type: Sequalize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true,
     },
     firstName: {
         type: Sequalize.STRING,
@@ -39,7 +39,7 @@ const Employee = sequalize.define('Employee',{
         allowNull: true,
     },
     idDepartment: {
-        type: Sequalize.STRING,
+        type: Sequalize.INTEGER,
         allowNull: true,
     }
 });

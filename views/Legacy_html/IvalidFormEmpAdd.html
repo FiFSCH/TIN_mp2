@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../../public/CSS/style.css"/>
+    <link href="../../public/CSS/style.css" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
     <title>New Employee</title>
 </head>
 <body>
 <Header>
     <h1>TIN-Company</h1>
-    <img src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" id="WorkInProgress"
-         alt="work in progress sign" width=100 height=100>
+    <img alt="work in progress sign" height=100
+         id="WorkInProgress" src="https://cdn-icons-png.flaticon.com/512/5229/5229377.png" width=100>
 </Header>
 <section>
     <nav>
         <ul>
             <li><a href="../index.ejs">Main Page</a></li>
-            <li><a href="../pages/Emp/Employee.ejs" class="active">Employee</a></li>
+            <li><a class="active" href="../pages/Emp/Employee.ejs">Employee</a></li>
             <li><a href="../pages/Dept/Department.ejs">Department</a></li>
             <li><a href="../pages/Contract/Contract.ejs">Contract</a></li>
         </ul>
@@ -24,36 +24,36 @@
 </section>
 <main>
     <h2>Add new employee</h2>
-    <form class="form" onsubmit="return validateForm();" novalidate>
+    <form class="form" novalidate onsubmit="return validateForm();">
         <label for="fname">First name: <span class="required-field">*</span></label>
-        <input type="text" id="fname" name="fname" placeholder="First name" required class="error-input">
-        <span id="errorFname" class="errors-text">Field is required!</span>
+        <input class="error-input" id="fname" name="fname" placeholder="First name" required type="text">
+        <span class="errors-text" id="errorFname">Field is required!</span>
         <label for="lname">Lastname: <span class="required-field">*</span></label>
-        <input type="text" id="lname" name="lname" placeholder="Lastname" required class="error-input">
-        <span id="errorLname" class="errors-text">Field is required!</span>
+        <input class="error-input" id="lname" name="lname" placeholder="Lastname" required type="text">
+        <span class="errors-text" id="errorLname">Field is required!</span>
         <label for="phone">Phone number: <span class="required-field">*</span></label>
-        <input type="text" id="phone" name="phone" placeholder="123456789" required class="error-input">
-        <span id="errorPhoneNumber" class="errors-text">Field is required!</span>
+        <input class="error-input" id="phone" name="phone" placeholder="123456789" required type="text">
+        <span class="errors-text" id="errorPhoneNumber">Field is required!</span>
         <label for="email">Email address: <span class="required-field">*</span></label>
-        <input type="email" id="email" name="email" placeholder="enter@emial.com" required class="error-input">
-        <span id="errorEmail" class="errors-text">Field is required!</span>
+        <input class="error-input" id="email" name="email" placeholder="enter@emial.com" required type="email">
+        <span class="errors-text" id="errorEmail">Field is required!</span>
         <label for="supervisor">Supervised by: </label>
-        <select name="supervisor" id="supervisor" multiple>
+        <select id="supervisor" multiple name="supervisor">
             <option selected value="none">--Select supervisor--</option>
             <option value="supervisor1">Jane Doe</option>
         </select>
         <label for="dept">Department: <span class="required-field">*</span></label>
-        <select name="dept" id="dept" required class="error-input">
+        <select class="error-input" id="dept" name="dept" required>
             <option disabled selected value="">--Select department--</option>
             <option value="dept1">Dept1</option>
             <option value="dept2">Dept2</option>
             <option value="dept3">Dept3</option>
         </select>
-        <span id="errorDept" class="errors-text">Field is required!</span>
-        <p id="errorsSummary" class="errors-text">Errors!</p>
+        <span class="errors-text" id="errorDept">Field is required!</span>
+        <p class="errors-text" id="errorsSummary">Errors!</p>
         <div class="form-buttons">
-            <input type="submit" value="Add" class="button-submit">
-            <a href="../pages/Emp/Employee.ejs" class="button-cancel">
+            <input class="button-submit" type="submit" value="Add">
+            <a class="button-cancel" href="../pages/Emp/Employee.ejs">
                 Cancel
             </a>
         </div>
@@ -64,6 +64,6 @@
     Filip Schulz, s22455
 </footer>
 </body>
-<script type="application/javascript" src="../../public/JS/ValidationCommon.js"></script>
-<script type="application/javascript" src="../../public/JS/ValidationEmpAdd.js"></script>
+<script src="../../public/JS/ValidationCommon.js" type="application/javascript"></script>
+<script src="../../public/JS/ValidationEmpAdd.js" type="application/javascript"></script>
 </html>
