@@ -22,25 +22,25 @@ exports.getEmployeeById = (empID) => {
 exports.createEmployee = (data) => {
     console.log(JSON.stringify(data));
     return Employee.create({
-        firstName: data.firstName,
-        lastName: data.lastName,
+        firstName: data.fname,
+        lastName: data.lname,
         dateFrom: sequelize.NOW,
         dateTo: null,
-        phoneNumber: data.phoneNumber,
+        phoneNumber: data.phone,
         email: data.email,
-        supervisedBy: data.supervisedBy,
-        idDepartment: data.idDepartment
+        supervisedBy: data.supervisor,
+        idDepartment: data.dept
     });
 };
 exports.updateEmployee = (idEmp, data) => {
-    const firstName = data.firstName;
-    const lastName = data.lastName
-    const dateFrom = data.dateFrom
-    const dateTo = data.dateTo
-    const phoneNumber = data.phoneNumber
-    const email = data.email
-    const supervisedBy = data.supervisedBy
-    const idDepartment = data.idDepartment
+    // const firstName = data.firstName;
+    // const lastName = data.lastName;
+    // const dateFrom = data.dateFrom;
+    // const dateTo = data.dateTo;
+    // const phoneNumber = data.phoneNumber;
+    // const email = data.email;
+    // const supervisedBy = data.supervisedBy;
+    // const idDepartment = data.idDepartment;
     return Employee.update(data, {where: {idEmployee: idEmp}});
 };
 exports.deleteEmployee = (idEmp) => {
