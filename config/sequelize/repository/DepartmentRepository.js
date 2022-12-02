@@ -24,8 +24,6 @@ exports.createDept = (data) => {
     });
 };
 exports.updateDept = (idDept, data) => {
-    // const name = data.name;
-    // const loc = data.location;
     return Department.update(data, {where: {idDepartment: idDept}});
 };
 exports.deleteDept = (idDept) => {

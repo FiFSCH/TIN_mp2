@@ -24,7 +24,7 @@ exports.createEmployee = (data) => {
     return Employee.create({
         firstName: data.fname,
         lastName: data.lname,
-        dateFrom: sequelize.NOW,
+        dateFrom: new Date(),
         dateTo: null,
         phoneNumber: data.phone,
         email: data.email,
@@ -33,14 +33,6 @@ exports.createEmployee = (data) => {
     });
 };
 exports.updateEmployee = (idEmp, data) => {
-    // const firstName = data.firstName;
-    // const lastName = data.lastName;
-    // const dateFrom = data.dateFrom;
-    // const dateTo = data.dateTo;
-    // const phoneNumber = data.phoneNumber;
-    // const email = data.email;
-    // const supervisedBy = data.supervisedBy;
-    // const idDepartment = data.idDepartment;
     return Employee.update(data, {where: {idEmployee: idEmp}});
 };
 exports.deleteEmployee = (idEmp) => {
