@@ -1,5 +1,4 @@
 const ContractDept = require('../../../Model/sequelize/Department_Contract');
-const Department = require('../../../Model/sequelize/Department');
 const Contract = require('../../../Model/sequelize/Contract');
 
 const sequelize = require("sequelize");
@@ -29,6 +28,6 @@ exports.createCont = (data) => {
 exports.updateCont = (contId, data) => {
     return Contract.update(data, {where: {idContract: contId}});
 };
-exports.deleteDept = (contId) => {
+exports.deleteCont = (contId) => {
     return Contract.destroy({where: {idContract: contId}});
 };

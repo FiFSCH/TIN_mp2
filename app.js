@@ -12,6 +12,7 @@ const contRouter = require('./routes/ContractRoute');
 const sequelizeInit = require('./config/sequelize/init');
 const empApiRouter = require('./routes/api/EmployeeApiRoute');
 const deptApiRouter = require('./routes/api/DepartmentApiRoute');
+const contApiRouter = require('./routes/api/ContractApiRoute');
 
 sequelizeInit().catch(err => {
     console.log(err);
@@ -36,6 +37,7 @@ app.use('/contracts_departments', contDeptRouter);
 app.use('/contracts', contRouter);
 app.use('/api/employees',empApiRouter);
 app.use('/api/departments',deptApiRouter);
+app.use('/api/contracts',contApiRouter);
 
 
 // catch 404 and forward to error handler
