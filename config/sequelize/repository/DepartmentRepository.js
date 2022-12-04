@@ -1,4 +1,4 @@
-const ContractDept = require('../../../Model/sequelize/Department_Contract');
+const Contract = require('../../../Model/sequelize/Contract');
 const Department = require('../../../Model/sequelize/Department');
 
 const sequelize = require("sequelize");
@@ -9,9 +9,9 @@ exports.getDepartments = () => {
 
 exports.getDepartmentById = (deptId) => {
     return Department.findByPk(deptId, {
-        Include: [{
-            model: ContractDept,
-            as: 'departments',
+        include: [{
+            model: Contract,
+            as: 'contracts',
         }]
     })
 };

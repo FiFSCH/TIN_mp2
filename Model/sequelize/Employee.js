@@ -33,14 +33,6 @@ const Employee = sequalize.define('Employee', {
         type: Sequalize.STRING,
         allowNull: false,
         unique: true,
-    },
-    supervisedBy: {
-        type: Sequalize.INTEGER,
-        allowNull: true,
-    },
-    idDepartment: {
-        type: Sequalize.INTEGER,
-        allowNull: true,
     }
 });
 module.exports = Employee;

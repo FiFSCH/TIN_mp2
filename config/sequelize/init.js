@@ -21,15 +21,15 @@ module.exports = () => {
     });
     Employee.belongsTo(Department, {as: 'worksIn', foreignKey: {name: 'idDepartment', allowNull: true}})
     Contract.belongsToMany(Department, {
-        through: DepartmentContract,
-        as: 'contracts',
+        through: 'DepartmentContract',
+        as: 'departments',
         foreignKey: {name: 'idContract', allowNull: false},
         constraints: true,
         onDelete: 'CASCADE'
     });
     Department.belongsToMany(Contract, {
-        through: DepartmentContract,
-        as: 'departments',
+        through: 'DepartmentContract',
+        as: 'contracts',
         foreignKey: {name: 'idDepartment', allowNull: false},
         constraints: true,
         onDelete: 'CASCADE'
@@ -59,7 +59,7 @@ module.exports = () => {
                         dateTo: null,
                         phoneNumber: '420692137',
                         email: 'john2Doe2@email.com',
-                        supervisedBy: null,
+                        supervisedBy: 1,
                         idDepartment: null
                     }
                 ]).then(() => {

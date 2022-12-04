@@ -8,15 +8,11 @@ exports.getEmployees = () => {
 
 exports.getEmployeeById = (empID) => {
     return Employee.findByPk(empID, {
-        Include: [{
+        include: [{
             model: Employee,
-            as: 'supervisor',
-            include: [{
-                model: Department,
-                as: 'worksIn'
-            }]
+            as: 'supervised_by'
         }]
-    })
+    });
 };
 
 exports.createEmployee = (data) => {
