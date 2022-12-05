@@ -19,16 +19,16 @@ module.exports = () => {
         constraints: true,
         onDelete: 'CASCADE'
     });
-    Employee.belongsTo(Department, {as: 'worksIn', foreignKey: {name: 'idDepartment', allowNull: true}})
+    Employee.belongsTo(Department, {as: 'worksIn', foreignKey: {name: 'idDepartment', allowNull: true}});
     Contract.belongsToMany(Department, {
-        through: 'DepartmentContract',
+        through: DepartmentContract,
         as: 'departments',
         foreignKey: {name: 'idContract', allowNull: false},
         constraints: true,
         onDelete: 'CASCADE'
     });
     Department.belongsToMany(Contract, {
-        through: 'DepartmentContract',
+        through: DepartmentContract,
         as: 'contracts',
         foreignKey: {name: 'idDepartment', allowNull: false},
         constraints: true,
@@ -36,10 +36,11 @@ module.exports = () => {
     });
 
     let allEmps, allDepts, allConts;
-    return sequelize.sync({force: true})
-        .then(() => {
-            return Employee.findAll();
-        }).then(emps => {
+    return sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(function () {
+        sequelize.sync({force: true})
+            .then(() => {
+                return Employee.findAll();
+            }).then(emps => {
             if (!emps || emps.length === 0) {
                 return Employee.bulkCreate([
                     {
@@ -64,7 +65,7 @@ module.exports = () => {
                     }
                 ]).then(() => {
                     return Employee.findAll();
-                })
+                });
             } else {
                 return emps;
             }
@@ -106,4 +107,6 @@ module.exports = () => {
                 return deptsConts;
             }
         });
+
+    });
 };
