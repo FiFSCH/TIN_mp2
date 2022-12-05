@@ -16,3 +16,16 @@ exports.showEmpAdd = (req, res, next) => {
 exports.showEmpEdit = (req, res, next) => {
     return res.render('pages/Emp/EmpEdit', {navLocation: 'emp'});
 };
+exports.showAddEmpForm = (req, res, next) => {
+    return res.render('pages/Emp/EmpAdd', {
+        emp: {},
+        pageTitle: 'New employee',
+        formMode: 'CreateNew',
+        btnLabel: 'Add new employee',
+        formAction: '/employees/add',
+        navLocation: 'emp'
+    });
+};
+exports.showEditEmpForm = (req, res, next) => {
+    const empId = req.params.idEmployee;
+};
