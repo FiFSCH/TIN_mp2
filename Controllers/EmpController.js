@@ -1,5 +1,11 @@
+const EmpRepository = require("../config/sequelize/repository/EmployeeRespository");
 exports.showEmpList = (req, res, next) => {
-    return res.render('pages/Emp/Employee', {navLocation: 'emp'});
+    return EmpRepository.getEmployees().then(emps => {
+        res.render("pages/Emp/Employee", {
+            emps: emps,
+            navLocation: 'emp'
+        });
+    });
 };
 exports.showEmpDetails = (req, res, next) => {
     return res.render('pages/Emp/EmpDetails', {navLocation: 'emp'});

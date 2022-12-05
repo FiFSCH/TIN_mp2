@@ -12,32 +12,48 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td data-label="First Name">Jane</td>
-            <td data-label="Lastname">Doe</td>
-            <td data-label="Phone number">420692137</td>
-            <td data-label="Email">sample@mail.com</td>
-            <td>
-                <ul class="list-actions">
-                    <li><a href="/employees/details/" class="list-actions-button-details">Details</a></li>
-                    <li><a href="" class="list-actions-button-delete"
-                           onclick="return confirm('Are you sure?')">Delete</a></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td data-label="First Name">John</td>
-            <td data-label="Lastname">Smith</td>
-            <td data-label="Phone number">213742069</td>
-            <td data-label="Email">sample2@mail.com</td>
-            <td>
-                <ul class="list-actions">
-                    <li><a href="/employees/details/" class="list-actions-button-details">Details</a></li>
-                    <li><a href="" class="list-actions-button-delete"
-                           onclick="return confirm('Are you sure?')">Delete</a></li>
-                </ul>
-            </td>
-        </tr>
+        <% for (let emp of emps){ %>
+            <tr>
+                <td data-label="First Name"><%= emp.firstName %></td>
+                <td data-label="Lastname"><%= emp.lastName %></td>
+                <td data-label="Email"><%= emp.email %></td>
+                <td data-label="Phone number"><%= emp.phoneNumber %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li><a href="/employees/details/<%= emp.idEmployee %>" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li><a href="" class="list-actions-button-delete"
+                               onclick="return confirm('Are you sure?')">Delete</a></li>
+                    </ul>
+                </td>
+            </tr>
+            <!--        <tr>-->
+            <!--            <td data-label="First Name">Jane</td>-->
+            <!--            <td data-label="Lastname">Doe</td>-->
+            <!--            <td data-label="Phone number">420692137</td>-->
+            <!--            <td data-label="Email">sample@mail.com</td>-->
+            <!--            <td>-->
+            <!--                <ul class="list-actions">-->
+            <!--                    <li><a href="/employees/details/" class="list-actions-button-details">Details</a></li>-->
+            <!--                    <li><a href="" class="list-actions-button-delete"-->
+            <!--                           onclick="return confirm('Are you sure?')">Delete</a></li>-->
+            <!--                </ul>-->
+            <!--            </td>-->
+            <!--        </tr>-->
+            <!--        <tr>-->
+            <!--            <td data-label="First Name">John</td>-->
+            <!--            <td data-label="Lastname">Smith</td>-->
+            <!--            <td data-label="Phone number">213742069</td>-->
+            <!--            <td data-label="Email">sample2@mail.com</td>-->
+            <!--            <td>-->
+            <!--                <ul class="list-actions">-->
+            <!--                    <li><a href="/employees/details/" class="list-actions-button-details">Details</a></li>-->
+            <!--                    <li><a href="" class="list-actions-button-delete"-->
+            <!--                           onclick="return confirm('Are you sure?')">Delete</a></li>-->
+            <!--                </ul>-->
+            <!--            </td>-->
+            <!--        </tr>-->
+        <% } %>
         </tbody>
     </table>
     <p><a href="/employees/add" class="button-add"> Add new employee </a></p>

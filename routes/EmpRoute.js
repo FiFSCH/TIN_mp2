@@ -6,5 +6,6 @@ router.get("/", employeeController.showEmpList);
 router.get("/add", employeeController.showEmpAdd);
 router.get("/details/:IdEmp", employeeController.showEmpDetails);
 router.get("/edit/:IdEmp", employeeController.showEmpEdit);
+//router.get("/delete/:IdEmp", employeeController.);
 
 module.exports = router;
