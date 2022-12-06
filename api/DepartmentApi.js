@@ -22,7 +22,7 @@ exports.getDepartmentById = (req, res, next) => {
 
 exports.createDepartment = (req, res, next) => {
     console.log(req.body);
-    DepartmentRepository.createDept(req.body).then(newDept =>{
+    DepartmentRepository.createDept(null,req.body).then(newDept =>{
         res.status(201).json(newDept);
     }).catch(err=>{
         if (!err.statusCode) {

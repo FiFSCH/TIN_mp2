@@ -16,8 +16,14 @@ exports.getDeptContById = (deptId, contId) => {
     });
 };
 
-exports.createDeptCont = (data) => {
+exports.createDeptCont = (idCont,data) => {
     console.log(JSON.stringify(data));
+    if(idCont !== -1){
+        return DeptCont.create({
+            idDepartment: data.deptContName,
+            idContract: idCont
+        });
+    }
     return DeptCont.create({
         idDepartment: data.deptContName,
         idContract: data.idContract

@@ -22,7 +22,7 @@ exports.getContractById = (req, res, next) => {
 
 exports.createDeptCont = (req, res, next) => {
     console.log(req.body);
-    DeptContRepository.createDeptCont(req.body).then(newDeptCont => {
+    DeptContRepository.createDeptCont(-1,req.body).then(newDeptCont => {
         res.status(201).json(newDeptCont);
     }).catch(err => {
         if (!err.statusCode) {

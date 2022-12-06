@@ -1,5 +1,6 @@
 const ContractRepository = require("../config/sequelize/repository/ContractRepository");
 
+
 exports.getContracts = (req, res, next) => {
     ContractRepository.getContracts().then(conts => {
         res.status(200).json(conts);
