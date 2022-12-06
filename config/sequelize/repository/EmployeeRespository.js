@@ -11,7 +11,11 @@ exports.getEmployeeById = (empID) => {
         include: [{
             model: Employee,
             as: 'supervised_by'
-        }]
+        },
+            {
+            model: Department,
+            as: 'worksIn'
+            }]
     });
 };
 

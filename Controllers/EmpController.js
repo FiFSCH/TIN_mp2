@@ -17,7 +17,7 @@ exports.showEmpEdit = (req, res, next) => {
     return res.render('pages/Emp/EmpEdit', {navLocation: 'emp'});
 };
 exports.showAddEmpForm = (req, res, next) => {
-    return res.render('pages/Emp/EmpAdd', {
+    return res.render('pages/Emp/form', {
         emp: {},
         pageTitle: 'New employee',
         formMode: 'CreateNew',
@@ -27,5 +27,27 @@ exports.showAddEmpForm = (req, res, next) => {
     });
 };
 exports.showEditEmpForm = (req, res, next) => {
-    const empId = req.params.idEmployee;
+    const empId = req.params.IdEmp;
+    return EmpRepository.getEmployeeById(empId).then(emp => {
+        res.render("pages/Emp/form", {
+            emp: emp,
+            formMode: 'edit',
+            pageTitle: 'Edit employee',
+            btnLabel: 'Edit employee',
+            formAction: '/employees/edit',
+            navLocation: 'emp'
+        });
+    });
+};
+exports.showEmpDetailsForm = (req, res, next) => {
+    const empId = req.params.IdEmp;
+    return EmpRepository.getEmployeeById(empId).then(emp => {
+        res.render("pages/Emp/form", {
+            emp: emp,
+            formMode: "showDetails",
+            pageTitle: "Employee details",
+            formAction: '',
+            navLocation: 'emp'
+        });
+    });
 };

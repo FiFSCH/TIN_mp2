@@ -3,9 +3,9 @@ const router = express.Router();
 const employeeController = require('../controllers/EmpController');
 
 router.get("/", employeeController.showEmpList);
-router.get("/add", employeeController.showEmpAdd);
-router.get("/details/:IdEmp", employeeController.showEmpDetails);
-router.get("/edit/:IdEmp", employeeController.showEmpEdit);
+router.get("/add", employeeController.showAddEmpForm);
+router.get("/details/:IdEmp", employeeController.showEmpDetailsForm);
+router.get("/edit/:IdEmp", employeeController.showEditEmpForm);
 //router.get("/delete/:IdEmp", employeeController.);
 
 module.exports = router;
