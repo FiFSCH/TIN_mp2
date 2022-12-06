@@ -102,7 +102,9 @@ module.exports = () => {
                 return DepartmentContract.bulkCreate([
                     {idDepartment: allDepts[0].idDepartment, idContract: allConts[1].idContract},
                     {idDepartment: allDepts[1].idDepartment, idContract: allConts[0].idContract}
-                ]);
+                ]).then(() => {
+                    return DepartmentContract.findAll();
+                });
             } else {
                 return deptsConts;
             }
