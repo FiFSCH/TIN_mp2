@@ -1,4 +1,6 @@
 const DeptRepository = require('../config/sequelize/repository/DepartmentRepository');
+const DeptContRepository = require('../config/sequelize/repository/DeptContRepository');
+const ContRepository = require('../config/sequelize/repository/ContractRepository');
 
 exports.showDeptList = (req, res, next) => {
     return DeptRepository.getDepartments().then(depts => {
@@ -37,6 +39,7 @@ exports.showDetailsDeptForm = (req, res, next) => {
     return DeptRepository.getDepartmentById(deptId).then(dept => {
         res.render('pages/Dept/form', {
             dept: dept,
+            contracts: dept.contracts,
             pageTitle: 'Department details',
             formMode: 'showDetails',
             formAction: "",
@@ -64,3 +67,31 @@ exports.deleteDept = (req, res, next) => {
         res.redirect("/departments");
     });
 };
+// exports.showDetailsDeptForm = (req,res,next) => {
+//     const deptId = req.params.IdDept;
+//     let allDeptsConts, allConts = [];
+//     return DeptContRepository.getContsByDept(deptId).then(deptsConts =>{
+//         allDeptsConts = deptsConts;
+//         let tmpCont;
+//         for (const cont of deptsConts){
+//             ContRepository.getContractById(cont.idContract).then(res =>{
+//                 tmpCont = res;
+//                // console.log(res);
+//                 allConts.push(tmpCont)
+//                 return res;
+//             })
+//         }
+//        // console.log(allDeptsConts);
+//         console.log(allConts);
+//         return allConts;
+//     }).then(tmp =>{
+//         // console.log(tmp);
+//         res.render('pages/Dept/form', {
+//             dept: {},
+//             pageTitle: 'Department details',
+//             formMode: 'showDetails',
+//             formAction: "",
+//             navLocation: 'dept'
+//         });
+//     });
+// };

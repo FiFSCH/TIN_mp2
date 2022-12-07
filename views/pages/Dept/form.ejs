@@ -22,9 +22,10 @@
             <label for="contracts">Contracts: </label>
             <select name="contracts" id="contracts">
                 <option disabled selected>-- Contracts --</option>
-                <option value="contract1" disabled>Contract1</option>
-                <option value="contract2" disabled>Contract2</option>
-                <option value="contract2" disabled>Contract3</option>
+                <% for(let cont of contracts){%>
+                <%console.log(contracts)%>
+                <option value="contract" disabled>ID: <%=cont.idContract%></option>
+                <%}%>
             </select>
             <div class="form-buttons">
                 <a href="/departments/edit/<%= dept.idDepartment %>" class="list-actions-button-edit">

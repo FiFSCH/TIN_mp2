@@ -22,7 +22,7 @@ exports.getContractById = (req, res, next) => {
 
 exports.createDeptCont = (req, res, next) => {
     console.log(req.body);
-    DeptContRepository.createDeptCont(-1,req.body).then(newDeptCont => {
+    DeptContRepository.createDeptCont(-1, req.body).then(newDeptCont => {
         res.status(201).json(newDeptCont);
     }).catch(err => {
         if (!err.statusCode) {
@@ -34,7 +34,7 @@ exports.createDeptCont = (req, res, next) => {
 exports.updateDeptCont = (req, res, next) => {
     const contId = req.params.idContract;
     const deptId = req.params.idDepartment;
-    DeptContRepository.updateDeptContCont(deptId,contId, req.body).then(result => {
+    DeptContRepository.updateDeptContCont(deptId, contId, req.body).then(result => {
         res.status(200).json({message: "Updated", contract: result});
     }).catch(err => {
         if (!err.statusCode) {
@@ -46,8 +46,19 @@ exports.updateDeptCont = (req, res, next) => {
 exports.deleteDeptCont = (req, res, next) => {
     const contId = req.params.idContract;
     const deptId = req.params.idDepartment;
-    DeptContRepository.deleteDeptCont(deptId,contId).then(result => {
+    DeptContRepository.deleteDeptCont(deptId, contId).then(result => {
         res.status(200).json({message: "Removed", deptCont: result});
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    });
+};
+exports.getContsByDept = (req, res, next) => {
+    const deptId = req.params.idDepartment;
+    DeptContRepository.getContsByDept(deptId).then(result => {
+        res.status(200).json({deptCont: result});
     }).catch(err => {
         if (!err.statusCode) {
             err.statusCode = 500;

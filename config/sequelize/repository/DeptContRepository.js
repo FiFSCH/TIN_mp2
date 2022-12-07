@@ -15,6 +15,13 @@ exports.getDeptContById = (deptId, contId) => {
         }
     });
 };
+exports.getContsByDept = (deptId) => {
+    return DeptCont.findAll({
+        where: {
+            idDepartment: deptId
+        }
+    });
+};
 
 exports.createDeptCont = (idCont,data) => {
     console.log(JSON.stringify(data));
