@@ -24,7 +24,7 @@
                 <option disabled selected>-- Contracts --</option>
                 <% for(let cont of contracts){%>
                 <%console.log(contracts)%>
-                <option value="contract" disabled>ID: <%=cont.idContract%></option>
+                <option value="<%=cont.idContract%>" disabled>ID: <%=cont.idContract%></option>
                 <%}%>
             </select>
             <div class="form-buttons">
