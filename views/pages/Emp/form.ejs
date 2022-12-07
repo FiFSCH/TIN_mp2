@@ -29,21 +29,19 @@
         <input type="email" id="email" name="email"
                value="<%= emp.email %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorEmail" class="errors-text"></span>
-        <label for="supervisor">Supervisor ID: </label>
-        <a href="/employees/details/<%= (emp.supervisedBy == null) ? emp.idEmployee : emp.supervisedBy %>">
-            <input type="text" id="supervisor" name="supervisor"
-                   value="<%= emp.supervisedBy %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        </a>
-        <label for="dept">Department ID: <span class="required-field">*</span></label>
+        <label for="supervisor">Supervisor: </label>
+        <input type="text" id="supervisor" name="supervisor"
+               value="<%= supervisor.firstName %> <%= supervisor.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+        <label for="dept">Department: <span class="required-field">*</span></label>
         <input type="text" name="dept" id="dept" name="dept"
-               value="<%= emp.idDepartment %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+               value="<%= department.name  %>  <%= department.location%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorDept" class="errors-text"></span>
         <% if (formMode == 'showDetails') { %>
-            <div class="form-buttons">
-                <a href="/employees/edit/<%=emp.idEmployee %>" class="list-actions-button-edit">
-                    Edit
-                </a>
-            </div>
+        <div class="form-buttons">
+            <a href="/employees/edit/<%= emp.idEmployee %>" class="list-actions-button-edit">
+                Edit
+            </a>
+        </div>
         <% } %>
         <div class="form-buttons">
             <% if (formMode != 'showDetails') { %>

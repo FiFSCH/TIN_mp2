@@ -6,6 +6,9 @@ router.get("/", employeeController.showEmpList);
 router.get("/add", employeeController.showAddEmpForm);
 router.get("/details/:IdEmp", employeeController.showEmpDetailsForm);
 router.get("/edit/:IdEmp", employeeController.showEditEmpForm);
-//router.get("/delete/:IdEmp", employeeController.);
+router.post('/add', employeeController.addEmp);
+router.post('/edit',employeeController.updateEmp);
+router.get("/delete/:IdEmp", employeeController.deleteEmp);
+
 
 module.exports = router;

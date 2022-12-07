@@ -13,8 +13,8 @@ exports.getEmployeeById = (empID) => {
             as: 'supervised_by'
         },
             {
-            model: Department,
-            as: 'worksIn'
+                model: Department,
+                as: 'worksIn'
             }]
     });
 };
@@ -28,12 +28,21 @@ exports.createEmployee = (data) => {
         dateTo: null,
         phoneNumber: data.phone,
         email: data.email,
-        supervisedBy: data.supervisor,
+        supervisedBy: (data.supervisor == '' || data.supervisor == ' ') ? null : data.supervisor,
         idDepartment: data.dept
     });
 };
 exports.updateEmployee = (idEmp, data) => {
-    return Employee.update(data, {where: {idEmployee: idEmp}});
+    return Employee.update({
+        firstName: data.fname,
+        lastName: data.lname,
+        dateFrom: data.employedFrom,
+        dateTo: (data.employedTo == '') ? null : data.employedTo,
+        phoneNumber: data.phone,
+        email: data.email,
+        supervisedBy: (data.supervisor == '') ? null : data.supervisor.idEmployee,
+        idDepartment: data.dept
+    }, {where: {idEmployee: idEmp}});
 };
 exports.deleteEmployee = (idEmp) => {
     return Employee.destroy({where: {idEmployee: idEmp}});

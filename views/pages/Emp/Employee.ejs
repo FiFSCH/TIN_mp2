@@ -6,8 +6,8 @@
         <tr>
             <th>First name</th>
             <th>Lastname</th>
-            <th>Phone number</th>
             <th>Email</th>
+            <th>Phone number</th>
             <th>Options</th>
         </tr>
         </thead>
@@ -22,7 +22,7 @@
                     <ul class="list-actions">
                         <li><a href="/employees/details/<%= emp.idEmployee %>" class="list-actions-button-details">Details</a>
                         </li>
-                        <li><a href="" class="list-actions-button-delete"
+                        <li><a href="/employees/delete/<%= emp.idEmployee %>" class="list-actions-button-delete"
                                onclick="return confirm('Are you sure?')">Delete</a></li>
                     </ul>
                 </td>
