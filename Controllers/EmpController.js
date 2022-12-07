@@ -8,15 +8,7 @@ exports.showEmpList = (req, res, next) => {
         });
     });
 };
-exports.showEmpDetails = (req, res, next) => {
-    return res.render('pages/Emp/EmpDetails', {navLocation: 'emp'});
-};
-exports.showEmpAdd = (req, res, next) => {
-    return res.render('pages/Emp/EmpAdd', {navLocation: 'emp'});
-};
-exports.showEmpEdit = (req, res, next) => {
-    return res.render('pages/Emp/EmpEdit', {navLocation: 'emp'});
-};
+
 exports.showAddEmpForm = (req, res, next) => {
     return res.render('pages/Emp/form', {
         emp: {},

@@ -1,0 +1,51 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm();" novalidate>
+        <label for="IdDept"></label>
+        <input type="hidden" name="IdDept" value="<%= dept.idDepartment %>">
+        <label for="name">Department name:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
+        <input type="text" id="name" name="name" placeholder="Name"
+               value="<%= dept.name %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+        <span id="errorDeptName" class="errors-text"></span>
+        <label for="location">Department location:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
+        <input type="text" id="location" name="location" placeholder="Location"
+               value="<%= dept.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+        <span id="errorDeptLoc" class="errors-text"></span>
+        <% if(formMode == 'showDetails'){ %>
+            <!--  TODO: GET DATA FROM JUNCTION TABLE-->
+            <label for="contracts">Contracts: </label>
+            <select name="contracts" id="contracts">
+                <option disabled selected>-- Contracts --</option>
+                <option value="contract1" disabled>Contract1</option>
+                <option value="contract2" disabled>Contract2</option>
+                <option value="contract2" disabled>Contract3</option>
+            </select>
+            <div class="form-buttons">
+                <a href="/departments/edit/<%= dept.idDepartment %>" class="list-actions-button-edit">
+                    Edit
+                </a>
+            </div>
+        <% } %>
+        <div class="form-buttons">
+            <% if (formMode != 'showDetails') { %>
+                <input type="submit" value="<%= btnLabel %>" class="button-submit">
+                <a href="/departments" class="button-cancel">
+                    Cancel
+                </a>
+            <% } else { %>
+                <a class="button-cancel" href="/departments">Go back</a>
+            <% } %>
+        </div>
+    </form>
+    <h2><%= pageTitle %></h2>
+
+    <script type="application/javascript" src="../JS/ValidationCommon.js"></script>
+    <script type="application/javascript" src="../JS/ValidationDept.js"></script>
+</main>
+<%- include('../../fragments/footer.ejs') %>

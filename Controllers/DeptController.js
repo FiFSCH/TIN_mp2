@@ -1,12 +1,66 @@
+const DeptRepository = require('../config/sequelize/repository/DepartmentRepository');
+
 exports.showDeptList = (req, res, next) => {
-    return res.render('pages/Dept/Department', {navLocation: 'dept'});
+    return DeptRepository.getDepartments().then(depts => {
+        res.render('pages/Dept/Department', {
+            depts: depts,
+            navLocation: 'dept'
+        });
+    });
 };
-exports.showDeptDetails = (req, res, next) => {
-    return res.render('pages/Dept/DeptDetails', {navLocation: 'dept'});
+
+exports.showAddDeptForm = (req, res, next) => {
+    return res.render('pages/Dept/form', {
+        dept: {},
+        pageTitle: 'New department',
+        formMode: 'createNew',
+        btnLabel: 'Add department',
+        formAction: '/departments/add',
+        navLocation: 'dept'
+    });
 };
-exports.showDeptAdd = (req, res, next) => {
-    return res.render('pages/Dept/DeptAdd', {navLocation: 'dept'});
+exports.showEditDeptForm = (req, res, next) => {
+    const deptId = req.params.IdDept;
+    return DeptRepository.getDepartmentById(deptId).then(dept => {
+        res.render('pages/Dept/form', {
+            dept: dept,
+            pageTitle: 'Edit department',
+            formMode: 'edit',
+            btnLabel: 'Edit department',
+            formAction: "/departments/edit",
+            navLocation: 'dept'
+        });
+    });
 };
-exports.showDeptEdit = (req, res, next) => {
-    return res.render('pages/Dept/DeptEdit', {navLocation: 'dept'});
+exports.showDetailsDeptForm = (req, res, next) => {
+    const deptId = req.params.IdDept;
+    return DeptRepository.getDepartmentById(deptId).then(dept => {
+        res.render('pages/Dept/form', {
+            dept: dept,
+            pageTitle: 'Department details',
+            formMode: 'showDetails',
+            formAction: "",
+            navLocation: 'dept'
+        });
+    });
+};
+
+exports.addDept = (req, res, next) => {
+    const deptData = {...req.body};
+    return DeptRepository.createDept(deptData).then(result => {
+        res.redirect("/departments");
+    });
+};
+exports.editDept = (req, res, next) => {
+    const deptId = req.body.IdDept;
+    const deptData = {...req.body};
+    return DeptRepository.updateDept(deptId,deptData).then(result => {
+        res.redirect("/departments");
+    });
+};
+exports.deleteDept = (req, res, next) => {
+    const deptId = req.params.IdDept;
+    return DeptRepository.deleteDept(deptId).then(result => {
+        res.redirect("/departments");
+    });
 };

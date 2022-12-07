@@ -10,39 +10,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td data-label="Name">Dept1</td>
-            <td data-label="Location">Oborniki Śląskie, Poland</td>
-            <td>
-                <ul class="list-actions">
-                    <li><a href="/departments/details/" class="list-actions-button-details">Details</a></li>
-                    <li><a href="" class="list-actions-button-delete"
-                           onclick="return confirm('Are you sure?')">Delete</a></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td data-label="Name">Dept2</td>
-            <td data-label="Location">Murowana Goślina, Poland</td>
-            <td>
-                <ul class="list-actions">
-                    <li><a href="/departments/details/" class="list-actions-button-details">Details</a></li>
-                    <li><a href="" class="list-actions-button-delete"
-                           onclick="return confirm('Are you sure?')">Delete</a></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td data-label="Name">Dept3</td>
-            <td data-label="Location">Raciąż, Poland</td>
-            <td>
-                <ul class="list-actions">
-                    <li><a href="/departments/details/" class="list-actions-button-details">Details</a></li>
-                    <li><a href="" class="list-actions-button-delete"
-                           onclick="return confirm('Are you sure?')">Delete</a></li>
-                </ul>
-            </td>
-        </tr>
+        <% for (let dept of depts){ %>
+            <tr>
+                <td data-label="Name"><%= dept.name %></td>
+                <td data-label="Location"><%= dept.location %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li><a href="/departments/details/<%= dept.idDepartment %>" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li><a href="/departments/delete/<%= dept.idDepartment %>" class="list-actions-button-delete"
+                               onclick="return confirm('Are you sure?')">Delete</a></li>
+                    </ul>
+                </td>
+            </tr>
+        <% } %>
         </tbody>
     </table>
     <p><a href="/departments/add" class="button-add"> Add new department </a></p>
