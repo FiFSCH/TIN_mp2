@@ -4,15 +4,24 @@
     <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm();" novalidate>
         <label for="empId"></label>
         <input type="hidden" name="empId" value="<%= emp.idEmployee %>">
-        <label for="fname">First name: <span class="required-field">*</span></label>
+        <label for="fname">First name:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
         <input type="text" id="fname" name="fname"
                value="<%= emp.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorFname" class="errors-text"></span>
-        <label for="lname">Lastname: <span class="required-field">*</span></label>
+        <label for="lname">Lastname:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
         <input type="text" id="lname" name="lname"
                value="<%= emp.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorLname" class="errors-text"></span>
-        <label for="employedFrom">Employed since: <span class="required-field">*</span></label>
+        <label for="employedFrom">Employed since:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
         <input type="date" id="employedFrom" name="employedFrom"
                value="<%= (!emp.dateFrom) ? '' : emp.dateFrom.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
                required>
@@ -21,27 +30,39 @@
         <input type="date" id="employedTo" name="employedTo"
                value="<%= (emp.dateTo == null) ? '' : emp.dateTo.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
         <span id="errorEmployedTo" class="errors-text"></span>
-        <label for="phone">Phone number: <span class="required-field">*</span></label>
+        <label for="phone">Phone number:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
         <input type="text" id="phone" name="phone"
                value="<%= emp.phoneNumber %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorPhoneNumber" class="errors-text"></span>
-        <label for="email">Email address: <span class="required-field">*</span></label>
+        <label for="email">Email address:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
         <input type="email" id="email" name="email"
                value="<%= emp.email %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorEmail" class="errors-text"></span>
         <label for="supervisor">Supervisor: </label>
+<!--        TODO: ZMIENIC TO NA LISTE SUPERVISORS I DEPTS-->
         <input type="text" id="supervisor" name="supervisor"
-               value="<%= supervisor.firstName %> <%= supervisor.lastName%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <label for="dept">Department: <span class="required-field">*</span></label>
+               value="<%= supervisor.firstName %> <%= supervisor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+               required>
+        <label for="dept">Department:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
         <input type="text" name="dept" id="dept" name="dept"
-               value="<%= department.name  %>  <%= department.location%>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+               value="<%= department.name %>  <%= department.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+               required>
         <span id="errorDept" class="errors-text"></span>
         <% if (formMode == 'showDetails') { %>
-        <div class="form-buttons">
-            <a href="/employees/edit/<%= emp.idEmployee %>" class="list-actions-button-edit">
-                Edit
-            </a>
-        </div>
+            <div class="form-buttons">
+                <a href="/employees/edit/<%= emp.idEmployee %>" class="list-actions-button-edit">
+                    Edit
+                </a>
+            </div>
         <% } %>
         <div class="form-buttons">
             <% if (formMode != 'showDetails') { %>

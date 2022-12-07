@@ -67,31 +67,3 @@ exports.deleteDept = (req, res, next) => {
         res.redirect("/departments");
     });
 };
-// exports.showDetailsDeptForm = (req,res,next) => {
-//     const deptId = req.params.IdDept;
-//     let allDeptsConts, allConts = [];
-//     return DeptContRepository.getContsByDept(deptId).then(deptsConts =>{
-//         allDeptsConts = deptsConts;
-//         let tmpCont;
-//         for (const cont of deptsConts){
-//             ContRepository.getContractById(cont.idContract).then(res =>{
-//                 tmpCont = res;
-//                // console.log(res);
-//                 allConts.push(tmpCont)
-//                 return res;
-//             })
-//         }
-//        // console.log(allDeptsConts);
-//         console.log(allConts);
-//         return allConts;
-//     }).then(tmp =>{
-//         // console.log(tmp);
-//         res.render('pages/Dept/form', {
-//             dept: {},
-//             pageTitle: 'Department details',
-//             formMode: 'showDetails',
-//             formAction: "",
-//             navLocation: 'dept'
-//         });
-//     });
-// };

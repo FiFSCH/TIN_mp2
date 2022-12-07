@@ -23,11 +23,19 @@ exports.getContsByDept = (deptId) => {
     });
 };
 
-exports.createDeptCont = (idCont,data) => {
+exports.getDeptsByCont = (contId) => {
+    return DeptCont.findAll({
+        where: {
+            idContract: contId
+        }
+    });
+};
+
+exports.createDeptCont = (idCont, data) => {
     console.log(JSON.stringify(data));
-    if(idCont !== -1){
+    if (idCont !== -1) {
         return DeptCont.create({
-            idDepartment: data.deptContName,
+            idDepartment: data.IdDept,
             idContract: idCont
         });
     }
@@ -36,17 +44,20 @@ exports.createDeptCont = (idCont,data) => {
         idContract: data.idContract
     });
 };
-exports.updateDeptContCont = (deptId, contId, data) => {
-    return DeptCont.update(data, {
+exports.updateDeptCont = (deptId, contId,data) => {
+    return DeptCont.update({
+        idDepartment: data.IdDept,
+    }, {
         where: {
-            idDepartment: deptId,
             idContract: contId
         }
     });
 };
 exports.deleteDeptCont = (deptId, contId) => {
-    return DeptCont.destroy({where: {
+    return DeptCont.destroy({
+        where: {
             idDepartment: deptId,
             idContract: contId
-        }});
+        }
+    });
 };

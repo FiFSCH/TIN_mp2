@@ -11,30 +11,20 @@
         </tr>
         </thead>
         <tbody>
+        <%for(let cont of conts){%>
         <tr>
-            <td data-label="Description">Contract1</td>
-            <td data-label="Start date">10/11/2019</td>
-            <td data-label="Due date">----------</td>
+            <td data-label="Description"><%=cont.description%></td>
+            <td data-label="Start date"><%=cont.startDate.toISOString().split('T')[0]%></td>
+            <td data-label="Due date"><%=(cont.dueDate==null || cont.dueDate == '') ? '' : cont.dueDate.toISOString().split('T')[0]%></td>
             <td>
                 <ul class="list-actions">
-                    <li><a href="/contracts_departments/details/" class="list-actions-button-details">Details</a></li>
-                    <li><a href="" class="list-actions-button-delete"
+                    <li><a href="/contracts_departments/details/<%=cont.idContract%>" class="list-actions-button-details">Details</a></li>
+                    <li><a href="/contracts_departments/delete/<%=cont.idContract%>" class="list-actions-button-delete"
                            onclick="return confirm('Are you sure?')">Delete</a></li>
                 </ul>
             </td>
         </tr>
-        <tr>
-            <td data-label="Description">Contract2</td>
-            <td data-label="Start date">20/01/2022</td>
-            <td data-label="Due date">12/10/2022</td>
-            <td>
-                <ul class="list-actions">
-                    <li><a href="/contracts_departments/details/" class="list-actions-button-details">Details</a></li>
-                    <li><a href="" class="list-actions-button-delete"
-                           onclick="return confirm('Are you sure?')">Delete</a></li>
-                </ul>
-            </td>
-        </tr>
+        <%}%>
         </tbody>
     </table>
     <p><a href="/contracts_departments/add" class="button-add"> Add new contract </a></p>

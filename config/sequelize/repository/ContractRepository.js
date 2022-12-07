@@ -23,15 +23,25 @@ exports.createCont = (data) => {
     return Contract.create({
         description: data.desc,
         startDate: data.startDate,
-        dueDate: data.dueDate,
+        dueDate: (data.dueDate == '') ? null : data.dueDate,
         respDept: data.deptContName
-    }).then(res =>{
-        DeptContRepository.createDeptCont(res.idContract,data);
+    }).then(res => {
+        DeptContRepository.createDeptCont(res.idContract, data);
     });
 };
 exports.updateCont = (contId, data) => {
-    DeptContRepository.updateDeptContCont(contId,data.deptContName,data);
-    return Contract.update(data, {where: {idContract: contId}})
+    DeptContRepository.getDeptsByCont(contId).then(res => {
+         if (res.length > 0)
+             return DeptContRepository.updateDeptCont(data.IdDept, contId,data);
+         return DeptContRepository.createDeptCont(contId, data);
+    });
+    return Contract.update({
+        description: data.desc,
+        startDate: data.startDate,
+        dueDate: (data.dueDate == '') ? null : data.dueDate,
+        respDept: data.IdDept
+    }, {where: {idContract: contId}});
+
 };
 exports.deleteCont = (contId) => {
     return Contract.destroy({where: {idContract: contId}});

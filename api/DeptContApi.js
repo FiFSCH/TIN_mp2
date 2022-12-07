@@ -34,7 +34,7 @@ exports.createDeptCont = (req, res, next) => {
 exports.updateDeptCont = (req, res, next) => {
     const contId = req.params.idContract;
     const deptId = req.params.idDepartment;
-    DeptContRepository.updateDeptContCont(deptId, contId, req.body).then(result => {
+    DeptContRepository.updateDeptCont(deptId, contId, req.body).then(result => {
         res.status(200).json({message: "Updated", contract: result});
     }).catch(err => {
         if (!err.statusCode) {

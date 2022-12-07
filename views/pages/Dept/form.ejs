@@ -18,7 +18,6 @@
                value="<%= dept.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorDeptLoc" class="errors-text"></span>
         <% if(formMode == 'showDetails'){ %>
-            <!--  TODO: GET DATA FROM JUNCTION TABLE-->
             <label for="contracts">Contracts: </label>
             <select name="contracts" id="contracts">
                 <option disabled selected>-- Contracts --</option>

@@ -1,0 +1,82 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm()" novalidate>
+        <label for="IdCont"></label>
+        <input type="hidden" name="IdCont" value="<%= deptCont.idContract %>">
+        <label for="desc">Description:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
+        <input type="text" id="desc" name="desc"
+               value="<%= deptCont.description %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
+        <span id="errorDescription" class="errors-text"></span>
+        <label for="startDate">Start date:
+            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+            <% } %>
+        </label>
+        <input type="date" id="startDate" name="startDate"
+               value="<%= (deptCont.startDate == null) ? '' : deptCont.startDate.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+               required>
+        <span id="errorStartDate" class="errors-text"></span>
+        <label for="dueDate">Due date: </label>
+        <input type="date" id="dueDate" name="dueDate"
+               value="<%= (deptCont.dueDate == null) ? '' : deptCont.dueDate.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
+        <span id="errorDueDate" class="errors-text"></span>
+        <% if(formMode != 'showDetails'){ %>
+            <label for="deptContName">Responsible department: <span class="required-field">*</span></label>
+            <select name="IdDept" id="deptContName" required>
+                <option disabled selected value="">--Select department--</option>
+                <% for(let i = 0; i < departments.length; i++) {
+                    let dept = departments[i]; %>
+                <option value="<%= dept.idDepartment %>" label="<%= dept.name + ' ' + dept.location %>"></option>
+                <% } %>
+            </select>
+        <% } %>
+        <span id="errorDeptContName" class="errors-text"></span>
+        <% if (formMode == 'showDetails') { %>
+            <div class="form-buttons">
+                <a href="/contracts_departments/edit/<%= deptCont.idContract %>" class="list-actions-button-edit">
+                    Edit
+                </a>
+            </div>
+        <% } %>
+        <div class="form-buttons">
+            <% if (formMode != 'showDetails') { %>
+                <input type="submit" value="<%= btnLabel %>" class="button-submit">
+                <a href="/contracts" class="button-cancel">
+                    Cancel
+                </a>
+            <% } else { %>
+                <a class="button-cancel" href="/contracts">Go back</a>
+            <% } %>
+        </div>
+    </form>
+    <% if(formMode == 'showDetails'){ %>
+        <table id="responsibleDepartment" class="table-list-resDept">
+            <thead>
+            <tr>
+                <th>Responsible Department</th>
+                <th>Location</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if (departments.length <= 0) { %>
+                <tr>
+                    <td data-label="Department">-----------------</td>
+                    <td data-label="Location">-----------------</td>
+                </tr>
+            <% }else{for(let dept of departments) { %>
+                <tr>
+                    <td data-label="Department"><%= dept.name %></td>
+                    <td data-label="Location"><%= dept.location %></td>
+                </tr>
+            <% }} %>
+            </tbody>
+        </table>
+    <% } %>
+
+</main>
+<script type="application/javascript" src="../../JS/ValidationCommon.js"></script>
+<script type="application/javascript" src="../../JS/ValidationContract.js"></script>
+<%- include('../../fragments/footer.ejs') %>

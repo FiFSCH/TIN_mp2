@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ContDeptController = require('../controllers/ContractController');
+const ContController = require('../controllers/ContractController');
 
-router.get("/", ContDeptController.showContList);
+router.get("/", ContController.showContList);
 
 module.exports = router;

@@ -1,3 +1,12 @@
+const ContractRepository = require('../config/sequelize/repository/ContractRepository');
 exports.showContList = (req, res, next) => {
-    return res.render('pages/Contract/Contract', {navLocation: 'cont'});
+    return ContractRepository.getContracts().then(
+        conts => {
+            res.render('pages/Contract/Contract',{
+                conts: conts,
+                navLocation: 'cont'
+            });
+        }
+    );
 };
+
