@@ -24,8 +24,8 @@ exports.createEmployee = (data) => {
     return Employee.create({
         firstName: data.fname,
         lastName: data.lname,
-        dateFrom: new Date(),
-        dateTo: null,
+        dateFrom: data.employedFrom,
+        dateTo: (data.employedTo == '') ? null : data.employedTo,
         phoneNumber: data.phone,
         email: data.email,
         supervisedBy: (data.supervisor == '' || data.supervisor == ' ') ? null : data.supervisor,
