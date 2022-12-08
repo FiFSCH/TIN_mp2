@@ -28,8 +28,8 @@ exports.createEmployee = (data) => {
         dateTo: (data.employedTo == '') ? null : data.employedTo,
         phoneNumber: data.phone,
         email: data.email,
-        supervisedBy: (data.supervisor == '' || data.supervisor == ' ') ? null : data.supervisor,
-        idDepartment: data.dept
+        supervisedBy: (data.supervisors == '' || data.supervisors == ' ') ? null : data.supervisors,
+        idDepartment: data.departments
     });
 };
 exports.updateEmployee = (idEmp, data) => {
@@ -40,8 +40,8 @@ exports.updateEmployee = (idEmp, data) => {
         dateTo: (data.employedTo == '') ? null : data.employedTo,
         phoneNumber: data.phone,
         email: data.email,
-        supervisedBy: (data.supervisor == '') ? null : data.supervisor.idEmployee,
-        idDepartment: data.dept
+        supervisedBy: (data.supervisors == '') ? null : data.supervisors,
+        idDepartment: data.departments
     }, {where: {idEmployee: idEmp}});
 };
 exports.deleteEmployee = (idEmp) => {

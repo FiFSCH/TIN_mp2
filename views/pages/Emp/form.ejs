@@ -44,20 +44,34 @@
         <input type="email" id="email" name="email"
                value="<%= emp.email %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorEmail" class="errors-text"></span>
-        <label for="supervisor">Supervisor: </label>
-<!--        TODO: ZMIENIC TO NA LISTE SUPERVISORS I DEPTS-->
-        <input type="text" id="supervisor" name="supervisor"
-               value="<%= supervisor.firstName %> <%= supervisor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-               required>
-        <label for="dept">Department:
-            <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
-            <% } %>
-        </label>
-        <input type="text" name="dept" id="dept" name="dept"
-               value="<%= department.name %>  <%= department.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-               required>
-        <span id="errorDept" class="errors-text"></span>
+        <% if(formMode == 'CreateNew' || formMode == 'edit'){ %>
+            <label for="supervisor">Supervisor: </label>
+            <select name="supervisors" id="supervisors">
+                <option disabled selected>-- Supervisors --</option>
+                <% for(let tmp of emps){ %>
+                <option value="<%= tmp.idEmployee %>"><%= tmp.firstName %> <%= tmp.lastName %></option>
+                <% } %>
+            </select>
+            <label for="dept">Department:<span class="required-field">*</span>
+            </label>
+            <select name="departments" id="departments">
+                <option disabled selected>-- departments --</option>
+                <% for(let tmp of depts){ %>
+                <option value="<%= tmp.idDepartment %>"><%= tmp.name %> <%= tmp.location %></option>
+                <% } %>
+            </select>
+        <% } %>
         <% if (formMode == 'showDetails') { %>
+            <label for="supervisor">Supervisor: </label>
+            <input type="text" id="supervisor" name="supervisor"
+                   value="<%= supervisor.firstName %> <%= supervisor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                   required>
+            <label for="dept">Department:
+            </label>
+            <input type="text" name="dept" id="dept" name="dept"
+                   value="<%= department.name %>  <%= department.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+                   required>
+            <span id="errorDept" class="errors-text"></span>
             <div class="form-buttons">
                 <a href="/employees/edit/<%= emp.idEmployee %>" class="list-actions-button-edit">
                     Edit

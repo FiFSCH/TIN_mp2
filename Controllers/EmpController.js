@@ -1,5 +1,5 @@
 const EmpRepository = require("../config/sequelize/repository/EmployeeRespository");
-const DeptRepository = require("../config/sequelize/repository/DepartmentRepository")
+const DeptRepository = require("../config/sequelize/repository/DepartmentRepository");
 exports.showEmpList = (req, res, next) => {
     return EmpRepository.getEmployees().then(emps => {
         res.render("pages/Emp/Employee", {
@@ -10,31 +10,37 @@ exports.showEmpList = (req, res, next) => {
 };
 
 exports.showAddEmpForm = (req, res, next) => {
-    return res.render('pages/Emp/form', {
-        emp: {},
-        supervisor: {},
-        department: {},
-        pageTitle: 'New employee',
-        formMode: 'CreateNew',
-        btnLabel: 'Add new employee',
-        formAction: '/employees/add',
-        navLocation: 'emp'
+    let allEmps;
+    return EmpRepository.getEmployees().then(emps => {
+        allEmps = emps;
+        return DeptRepository.getDepartments();
+    }).then(depts => {
+        return res.render('pages/Emp/form', {
+            emp: {},
+            emps: allEmps,
+            depts: depts,
+            pageTitle: 'New employee',
+            formMode: 'CreateNew',
+            btnLabel: 'Add new employee',
+            formAction: '/employees/add',
+            navLocation: 'emp'
+        });
     });
 };
 exports.showEditEmpForm = (req, res, next) => {
     const empId = req.params.IdEmp;
-    let emp, sup;
+    let allEmps, emp;
     return EmpRepository.getEmployeeById(empId).then(res => {
         emp = res;
-        return EmpRepository.getEmployeeById(res.supervisedBy);
-    }).then(tmpSup => {
-        sup = tmpSup;
-        return DeptRepository.getDepartmentById(emp.idDepartment);
-    }).then(dept => {
-        res.render("pages/Emp/form", {
+        return EmpRepository.getEmployees();
+    }).then(emps => {
+        allEmps = emps;
+        return DeptRepository.getDepartments();
+    }).then(depts => {
+        return res.render("pages/Emp/form", {
             emp: emp,
-            department: (dept == null || dept == '') ? '' : dept,
-            supervisor: (sup == null || sup == '') ? '' : sup,
+            emps: allEmps,
+            depts: depts,
             formMode: "edit",
             pageTitle: "Edit employee",
             btnLabel: 'Edit employee',
@@ -42,18 +48,6 @@ exports.showEditEmpForm = (req, res, next) => {
             navLocation: 'emp'
         });
     });
-    // return EmpRepository.getEmployeeById(empId).then(emp => {
-    //     res.render("pages/Emp/form", {
-    //         emp: emp,
-    //         department: (dept == null || dept == '') ? '' : dept,
-    //         supervisor: (sup == null || sup == '') ? '' : sup,
-    //         formMode: 'edit',
-    //         pageTitle: 'Edit employee',
-    //         btnLabel: 'Edit employee',
-    //         formAction: '/employees/edit',
-    //         navLocation: 'emp'
-    //     });
-    // });
 };
 exports.showEmpDetailsForm = (req, res, next) => {
     const empId = req.params.IdEmp;
