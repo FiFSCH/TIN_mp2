@@ -89,3 +89,6 @@ exports.deleteEmp = (req, res, next) => {
         res.redirect('/employees');
     });
 };
+exports.redirectToList = (req, res, next) =>{
+    return res.redirect('/employees');
+};

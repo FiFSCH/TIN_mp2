@@ -1,5 +1,6 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
+    <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm();" novalidate>
         <label for="IdDept"></label>
         <input type="hidden" name="IdDept" value="<%= dept.idDepartment %>">
@@ -18,14 +19,13 @@
                value="<%= dept.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
         <span id="errorDeptLoc" class="errors-text"></span>
         <% if(formMode == 'showDetails'){ %>
-            <label for="contracts">Contracts: </label>
-            <select name="contracts" id="contracts">
-                <option disabled selected>-- Contracts --</option>
-                <% for(let cont of contracts){%>
-                <%console.log(contracts)%>
-                <option value="<%=cont.idContract%>" disabled>ID: <%=cont.idContract%></option>
-                <%}%>
-            </select>
+            <!--            <select name="contracts" id="contracts">-->
+            <!--                <option disabled selected>&#45;&#45; Contracts &#45;&#45;</option>-->
+            <!--                <% // for(let cont of contracts){ %>-->
+            <!--                <% //console.log(contracts) %>-->
+            <!--                <option value="<%//= cont.idContract %>" disabled>ID: <%=// cont.idContract %></option>-->
+            <!--                <% //} %>-->
+            <!--            </select>-->
             <div class="form-buttons">
                 <a href="/departments/edit/<%= dept.idDepartment %>" class="list-actions-button-edit">
                     Edit
@@ -43,7 +43,30 @@
             <% } %>
         </div>
     </form>
-    <h2><%= pageTitle %></h2>
+    <% if(formMode == 'showDetails'){ %>
+        <h3>Contracts</h3>
+        <table id="contracts" class="table-list-resDept">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if (contracts.length <= 0) { %>
+            <tr>
+                <td data-label="Department">-------------</td>
+                <td data-label="Location">--------------</td>
+            </tr>
+        <% }else{for(let cont of contracts) { %>
+            <tr>
+                <td data-label="ID"><a href="/contracts_departments/details/<%=cont.idContract%>"><%= cont.idContract %></a></td>
+                <td data-label="Description"><%= cont.description %></td>
+            </tr>
+        <% }} %>
+        </tbody>
+    </table>
+    <%}%>
 
     <script type="application/javascript" src="../JS/ValidationCommon.js"></script>
     <script type="application/javascript" src="../JS/ValidationDept.js"></script>

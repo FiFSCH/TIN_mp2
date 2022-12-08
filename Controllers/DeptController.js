@@ -67,3 +67,6 @@ exports.deleteDept = (req, res, next) => {
         res.redirect("/departments");
     });
 };
+exports.redirectToList = (req, res, next) =>{
+    return res.redirect('/departments');
+};

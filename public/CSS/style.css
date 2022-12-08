@@ -74,6 +74,9 @@ main h2 {
     border-bottom: 1px solid #7f8c8d;
     margin-bottom: 2rem;
 }
+h3{
+    border-bottom: 1px solid #7f8c8d;
+}
 
 .table-list {
     border-collapse: collapse;

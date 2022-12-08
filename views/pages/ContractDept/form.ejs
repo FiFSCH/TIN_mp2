@@ -53,6 +53,7 @@
         </div>
     </form>
     <% if(formMode == 'showDetails'){ %>
+        <h3>Department</h3>
         <table id="responsibleDepartment" class="table-list-resDept">
             <thead>
             <tr>
@@ -68,7 +69,7 @@
                 </tr>
             <% }else{for(let dept of departments) { %>
                 <tr>
-                    <td data-label="Department"><%= dept.name %></td>
+                    <td data-label="Department"><a href="/departments/details/<%=dept.idDepartment%>"><%= dept.name %></a></td>
                     <td data-label="Location"><%= dept.location %></td>
                 </tr>
             <% }} %>
