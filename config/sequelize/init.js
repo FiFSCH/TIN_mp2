@@ -48,7 +48,7 @@ module.exports = () => {
                         lastName: 'Doe',
                         dateFrom: '1998-02-02',
                         dateTo: null,
-                        phoneNumber: '213769420',
+                        phoneNumber: '2137694200',
                         email: 'johnDoe@email.com',
                         supervisedBy: null,
                         idDepartment: null
@@ -58,7 +58,7 @@ module.exports = () => {
                         lastName: 'Doe2',
                         dateFrom: '2001-01-05',
                         dateTo: null,
-                        phoneNumber: '420692137',
+                        phoneNumber: '4206921370',
                         email: 'john2Doe2@email.com',
                         supervisedBy: 1,
                         idDepartment: null

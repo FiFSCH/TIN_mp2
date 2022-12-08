@@ -9,50 +9,79 @@
             <% } %>
         </label>
         <input type="text" id="fname" name="fname"
-               value="<%= emp.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <span id="errorFname" class="errors-text"></span>
+               value="<%= emp.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
+               class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>">
+        <span id="errorFname" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+            <% } %>
+        </span>
         <label for="lname">Lastname:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
         <input type="text" id="lname" name="lname"
-               value="<%= emp.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <span id="errorLname" class="errors-text"></span>
+               value="<%= emp.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
+               class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : '' %>">
+        <span id="errorLname" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+            <% } %>
+        </span>
         <label for="employedFrom">Employed since:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
         <input type="date" id="employedFrom" name="employedFrom"
                value="<%= (!emp.dateFrom) ? '' : emp.dateFrom.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-               required>
-        <span id="errorEmployedSince" class="errors-text"></span>
+               required class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ? 'error-input' : '' %>">
+        <span id="errorEmployedSince" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('dateFrom'))) { %>
+                <%= validationErrors.find(e => e.path.includes('dateFrom')).message %>
+            <% } %>
+        </span>
         <label for="employedTo">Employment termination: </label>
         <input type="date" id="employedTo" name="employedTo"
-               value="<%= (emp.dateTo == null) ? '' : emp.dateTo.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
-        <span id="errorEmployedTo" class="errors-text"></span>
+               value="<%= (emp.dateTo == null) ? '' : emp.dateTo.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+               class="<%= validationErrors.find(e => e.path.includes('dateTo')) ? 'error-input' : '' %>">
+        <span id="errorEmployedTo" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('dateTo'))) { %>
+                <%= validationErrors.find(e => e.path.includes('dateTo')).message %>
+            <% } %>
+        </span>
         <label for="phone">Phone number:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
         <input type="text" id="phone" name="phone"
-               value="<%= emp.phoneNumber %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <span id="errorPhoneNumber" class="errors-text"></span>
+               value="<%= emp.phoneNumber %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
+               class="<%= validationErrors.find(e => e.path.includes('phoneNumber')) ? 'error-input' : '' %>">
+        <span id="errorPhoneNumber" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('phoneNumber'))) { %>
+                <%= validationErrors.find(e => e.path.includes('phoneNumber')).message %>
+            <% } %>
+        </span>
         <label for="email">Email address:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
         <input type="email" id="email" name="email"
-               value="<%= emp.email %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <span id="errorEmail" class="errors-text"></span>
+               value="<%= emp.email %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
+               class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>">
+        <span id="errorEmail" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                <%= validationErrors.find(e => e.path.includes('email')).message %>
+            <% } %>
+        </span>
         <% if(formMode == 'CreateNew' || formMode == 'edit'){ %>
-            <label for="supervisor">Supervisor: </label>
+            <label for="supervisors">Supervisor: </label>
             <select name="supervisors" id="supervisors">
                 <option disabled selected>-- Supervisors --</option>
                 <% for(let tmp of emps){ %>
                     <option value="<%= tmp.idEmployee %>"><%= tmp.firstName %> <%= tmp.lastName %></option>
                 <% } %>
             </select>
-            <label for="dept">Department:<span class="required-field">*</span>
+            <label for="departments">Department:<span class="required-field">*</span>
             </label>
             <select name="departments" id="departments">
                 <option disabled selected>-- departments --</option>
@@ -62,22 +91,20 @@
             </select>
         <% } %>
         <% if (formMode == 'showDetails') { %>
-        <label for="supervisor"><a
-                    href="/employees/details/<%= supervisor.idEmployee %>">Supervisor: </a></label>
-        <input type="text" id="supervisor" name="supervisor"
-               value="<%= supervisor.firstName %> <%= supervisor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-               required>
-        <label for="dept"><a href="/departments/details/<%= department.idDepartment %>">Department:
-            </a></label>
-        <input type="text" name="dept" id="dept" name="dept"
-               value="<%= department.name %>  <%= department.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-               required>
-        <span id="errorDept" class="errors-text"></span>
-        <div class="form-buttons">
-            <a href="/employees/edit/<%= emp.idEmployee %>" class="list-actions-button-edit">
-                Edit
-            </a>
-        </div>
+            <label for="supervisor"><a
+                        href="/employees/details/<%= supervisor.idEmployee %>">Supervisor: </a></label>
+            <input type="text" id="supervisor" name="supervisor"
+                   value="<%= supervisor.firstName %> <%= supervisor.lastName %>" disabled required>
+            <label for="dept"><a href="/departments/details/<%= department.idDepartment %>">Department:
+                </a></label>
+            <input type="text" name="dept" id="dept"
+                   value="<%= department.name %>  <%= department.location %>" disabled required>
+            <span id="errorDept" class="errors-text"></span>
+            <div class="form-buttons">
+                <a href="/employees/edit/<%= emp.idEmployee %>" class="list-actions-button-edit">
+                    Edit
+                </a>
+            </div>
         <% } %>
         <div class="form-buttons">
             <% if (formMode != 'showDetails') { %>

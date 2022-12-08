@@ -46,7 +46,7 @@ function validateForm() {
     } else if (!checkEmail(emailInput.value)) {
         valid = false;
         emailInput.classList.add("error-input");
-        errorEmail.innerText = "Field should contain correct email address";
+        errorEmail.innerText = "Field should contain correct email address!";
     }
     if (!checkRequired(phoneInput.value)) {
         valid = false;

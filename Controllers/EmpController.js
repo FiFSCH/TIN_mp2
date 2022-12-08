@@ -23,7 +23,8 @@ exports.showAddEmpForm = (req, res, next) => {
             formMode: 'CreateNew',
             btnLabel: 'Add new employee',
             formAction: '/employees/add',
-            navLocation: 'emp'
+            navLocation: 'emp',
+            validationErrors: []
         });
     });
 };
@@ -45,7 +46,8 @@ exports.showEditEmpForm = (req, res, next) => {
             pageTitle: "Edit employee",
             btnLabel: 'Edit employee',
             formAction: '/employees/edit',
-            navLocation: 'emp'
+            navLocation: 'emp',
+            validationErrors: []
         });
     });
 };
@@ -66,21 +68,75 @@ exports.showEmpDetailsForm = (req, res, next) => {
             formMode: "showDetails",
             pageTitle: "Employee details",
             formAction: '',
-            navLocation: 'emp'
+            navLocation: 'emp',
+            validationErrors: []
         });
     });
 };
 exports.addEmp = (req, res, next) => {
     const empData = {...req.body};
-    return EmpRepository.createEmployee(empData).then(result => {
-        res.redirect('/employees');
-    });
+    let allEmps, allDepts;
+    return EmpRepository.getEmployees()
+        .then(emps => {
+            allEmps = emps;
+            return DeptRepository.getDepartments();
+        }).then(depts => {
+            allDepts = depts;
+            return EmpRepository.createEmployee(empData);
+        }).then(result => {
+            res.redirect('/employees');
+        }).catch(err => {
+            return res.render('pages/Emp/form', {
+                emp: {},
+                emps: allEmps,
+                depts: allDepts,
+                pageTitle: 'New employee',
+                formMode: 'CreateNew',
+                btnLabel: 'Add new employee',
+                formAction: '/employees/add',
+                navLocation: 'emp',
+                validationErrors: err.errors
+            });
+        });
 };
+// return EmpRepository.getEmployeeById(empId).then(res => {
+//     emp = res;
+//     return EmpRepository.getEmployees();
+// }).then(emps => {
+//     allEmps = emps;
+//     return DeptRepository.getDepartments();
+// }).then(depts => {
+//     return res.render("pages/Emp/form", {
 exports.updateEmp = (req, res, next) => {
+    let allEmps, allDepts, emp;
     const empId = req.body.empId;
     const empData = {...req.body};
-    return EmpRepository.updateEmployee(empId, empData).then(result => {
-        res.redirect('/employees');
+    // return EmpRepository.updateEmployee(empId, empData).then(result => {
+    //     res.redirect('/employees');
+    // })
+    return EmpRepository.getEmployeeById(empId).then(tmp => {
+        emp = tmp;
+        return EmpRepository.getEmployees();
+    }).then(emps => {
+        allEmps = emps;
+        return DeptRepository.getDepartments();
+    }).then(depts => {
+        allDepts = depts;
+        return EmpRepository.updateEmployee(empId, empData).then(result => {
+            res.redirect('/employees');
+        }).catch(err => {
+            res.render("pages/Emp/form", {
+                emp: emp,
+                emps: allEmps,
+                depts: allDepts,
+                formMode: "edit",
+                pageTitle: "Edit employee",
+                btnLabel: 'Edit employee',
+                formAction: '/employees/edit',
+                navLocation: 'emp',
+                validationErrors: err.errors
+            });
+        });
     });
 };
 exports.deleteEmp = (req, res, next) => {
@@ -89,6 +145,6 @@ exports.deleteEmp = (req, res, next) => {
         res.redirect('/employees');
     });
 };
-exports.redirectToList = (req, res, next) =>{
+exports.redirectToList = (req, res, next) => {
     return res.redirect('/employees');
 };
