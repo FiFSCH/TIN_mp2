@@ -11,10 +11,28 @@ const Department = sequelize.define('Department', {
     location: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required!"
+            },
+            len: {
+                args: [2, 40],
+                msg: "Field should contain between 2 to 40 characters!"
+            }
+        }
     },
     name: {
         type: Sequelize.STRING,
         allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required!"
+            },
+            len: {
+                args: [2, 40],
+                msg: "Field should contain between 2 to 40 characters!"
+            }
+        }
     }
 });
 module.exports = Department;

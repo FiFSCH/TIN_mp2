@@ -99,21 +99,10 @@ exports.addEmp = (req, res, next) => {
             });
         });
 };
-// return EmpRepository.getEmployeeById(empId).then(res => {
-//     emp = res;
-//     return EmpRepository.getEmployees();
-// }).then(emps => {
-//     allEmps = emps;
-//     return DeptRepository.getDepartments();
-// }).then(depts => {
-//     return res.render("pages/Emp/form", {
 exports.updateEmp = (req, res, next) => {
     let allEmps, allDepts, emp;
     const empId = req.body.empId;
     const empData = {...req.body};
-    // return EmpRepository.updateEmployee(empId, empData).then(result => {
-    //     res.redirect('/employees');
-    // })
     return EmpRepository.getEmployeeById(empId).then(tmp => {
         emp = tmp;
         return EmpRepository.getEmployees();

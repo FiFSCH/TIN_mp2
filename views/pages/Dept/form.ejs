@@ -9,23 +9,27 @@
             <% } %>
         </label>
         <input type="text" id="name" name="name" placeholder="Name"
-               value="<%= dept.name %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <span id="errorDeptName" class="errors-text"></span>
+               value="<%= dept.name %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
+               class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>">
+        <span id="errorDeptName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('name'))) { %>
+                <%= validationErrors.find(e => e.path.includes('name')).message %>
+            <% } %>
+        </span>
         <label for="location">Department location:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
         <input type="text" id="location" name="location" placeholder="Location"
-               value="<%= dept.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <span id="errorDeptLoc" class="errors-text"></span>
+               value="<%= dept.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
+               class="<%= validationErrors.find(e => e.path.includes('location')) ? 'error-input' : '' %>">
+
+        <span id="errorDeptLoc" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('location'))) { %>
+                <%= validationErrors.find(e => e.path.includes('location')).message %>
+            <% } %>
+        </span>
         <% if(formMode == 'showDetails'){ %>
-            <!--            <select name="contracts" id="contracts">-->
-            <!--                <option disabled selected>&#45;&#45; Contracts &#45;&#45;</option>-->
-            <!--                <% // for(let cont of contracts){ %>-->
-            <!--                <% //console.log(contracts) %>-->
-            <!--                <option value="<%//= cont.idContract %>" disabled>ID: <%=// cont.idContract %></option>-->
-            <!--                <% //} %>-->
-            <!--            </select>-->
             <div class="form-buttons">
                 <a href="/departments/edit/<%= dept.idDepartment %>" class="list-actions-button-edit">
                     Edit
@@ -46,27 +50,29 @@
     <% if(formMode == 'showDetails'){ %>
         <h3>Contracts</h3>
         <table id="contracts" class="table-list-resDept">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% if (contracts.length <= 0) { %>
+            <thead>
             <tr>
-                <td data-label="Department">-------------</td>
-                <td data-label="Location">--------------</td>
+                <th>ID</th>
+                <th>Description</th>
             </tr>
-        <% }else{for(let cont of contracts) { %>
-            <tr>
-                <td data-label="ID"><a href="/contracts_departments/details/<%=cont.idContract%>"><%= cont.idContract %></a></td>
-                <td data-label="Description"><%= cont.description %></td>
-            </tr>
-        <% }} %>
-        </tbody>
-    </table>
-    <%}%>
+            </thead>
+            <tbody>
+            <% if (contracts.length <= 0) { %>
+                <tr>
+                    <td data-label="Department">-------------</td>
+                    <td data-label="Location">--------------</td>
+                </tr>
+            <% }else{for(let cont of contracts) { %>
+                <tr>
+                    <td data-label="ID"><a
+                                href="/contracts_departments/details/<%= cont.idContract %>"><%= cont.idContract %></a>
+                    </td>
+                    <td data-label="Description"><%= cont.description %></td>
+                </tr>
+            <% }} %>
+            </tbody>
+        </table>
+    <% } %>
 
     <script type="application/javascript" src="../JS/ValidationCommon.js"></script>
     <script type="application/javascript" src="../JS/ValidationDept.js"></script>

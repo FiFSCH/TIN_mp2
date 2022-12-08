@@ -18,7 +18,8 @@ exports.showAddDeptForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Add department',
         formAction: '/departments/add',
-        navLocation: 'dept'
+        navLocation: 'dept',
+        validationErrors: []
     });
 };
 exports.showEditDeptForm = (req, res, next) => {
@@ -30,7 +31,8 @@ exports.showEditDeptForm = (req, res, next) => {
             formMode: 'edit',
             btnLabel: 'Edit department',
             formAction: "/departments/edit",
-            navLocation: 'dept'
+            navLocation: 'dept',
+            validationErrors: []
         });
     });
 };
@@ -43,7 +45,8 @@ exports.showDetailsDeptForm = (req, res, next) => {
             pageTitle: 'Department details',
             formMode: 'showDetails',
             formAction: "",
-            navLocation: 'dept'
+            navLocation: 'dept',
+            validationErrors: []
         });
     });
 };
@@ -52,21 +55,47 @@ exports.addDept = (req, res, next) => {
     const deptData = {...req.body};
     return DeptRepository.createDept(deptData).then(result => {
         res.redirect("/departments");
+    }).catch(err => {
+        res.render('pages/Dept/form', {
+            dept: {},
+            pageTitle: 'New department',
+            formMode: 'createNew',
+            btnLabel: 'Add department',
+            formAction: '/departments/add',
+            navLocation: 'dept',
+            validationErrors: err.errors
+        });
     });
 };
 exports.editDept = (req, res, next) => {
     const deptId = req.body.IdDept;
+    let tmp;
     const deptData = {...req.body};
-    return DeptRepository.updateDept(deptId,deptData).then(result => {
-        res.redirect("/departments");
+    return DeptRepository.getDepartmentById(deptId).then(returned => {
+        tmp = returned;
+        return DeptRepository.updateDept(deptId, deptData).then(result => {
+            res.redirect("/departments");
+        }).catch(err => {
+            console.log(tmp);
+            res.render('pages/Dept/form', {
+                dept: tmp,
+                pageTitle: 'Edit department',
+                formMode: 'edit',
+                btnLabel: 'Edit department',
+                formAction: "/departments/edit",
+                navLocation: 'dept',
+                validationErrors: err.errors
+            });
+        });
     });
 };
+
 exports.deleteDept = (req, res, next) => {
     const deptId = req.params.IdDept;
     return DeptRepository.deleteDept(deptId).then(result => {
         res.redirect("/departments");
     });
 };
-exports.redirectToList = (req, res, next) =>{
+exports.redirectToList = (req, res, next) => {
     return res.redirect('/departments');
 };
