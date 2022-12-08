@@ -9,20 +9,35 @@
             <% } %>
         </label>
         <input type="text" id="desc" name="desc"
-               value="<%= deptCont.description %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required>
-        <span id="errorDescription" class="errors-text"></span>
+               value="<%= deptCont.description %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
+               class="<%= validationErrors.find(e => e.path.includes('description')) ? 'error-input' : '' %>">
+        <span id="errorDescription" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('description'))) { %>
+                <%= validationErrors.find(e => e.path.includes('description')).message %>
+            <% } %>
+        </span>
         <label for="startDate">Start date:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
         <input type="date" id="startDate" name="startDate"
                value="<%= (deptCont.startDate == null) ? '' : deptCont.startDate.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-               required>
-        <span id="errorStartDate" class="errors-text"></span>
+               required
+               class="<%= validationErrors.find(e => e.path.includes('startDate')) ? 'error-input' : '' %>">
+        <span id="errorStartDate" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('startDate'))) { %>
+                <%= validationErrors.find(e => e.path.includes('startDate')).message %>
+            <% } %>
+        </span>
         <label for="dueDate">Due date: </label>
         <input type="date" id="dueDate" name="dueDate"
-               value="<%= (deptCont.dueDate == null) ? '' : deptCont.dueDate.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>>
-        <span id="errorDueDate" class="errors-text"></span>
+               value="<%= (deptCont.dueDate == null) ? '' : deptCont.dueDate.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+               class="<%= validationErrors.find(e => e.path.includes('deptCont')) ? 'error-input' : '' %>">
+        <span id="errorDueDate" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('dueDate'))) { %>
+                <%= validationErrors.find(e => e.path.includes('dueDate')).message %>
+            <% } %>
+        </span>
         <% if(formMode != 'showDetails'){ %>
             <label for="deptContName">Responsible department: <span class="required-field">*</span></label>
             <select name="IdDept" id="deptContName" required>
@@ -69,7 +84,9 @@
                 </tr>
             <% }else{for(let dept of departments) { %>
                 <tr>
-                    <td data-label="Department"><a href="/departments/details/<%=dept.idDepartment%>"><%= dept.name %></a></td>
+                    <td data-label="Department"><a
+                                href="/departments/details/<%= dept.idDepartment %>"><%= dept.name %></a>
+                    </td>
                     <td data-label="Location"><%= dept.location %></td>
                 </tr>
             <% }} %>
