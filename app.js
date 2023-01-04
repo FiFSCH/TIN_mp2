@@ -14,6 +14,8 @@ const empApiRouter = require('./routes/api/EmployeeApiRoute');
 const deptApiRouter = require('./routes/api/DepartmentApiRoute');
 const contApiRouter = require('./routes/api/ContractApiRoute');
 const deptContApiRouter = require('./routes/api/DeptContApiRoute');
+const session = require('express-session');
+
 
 sequelizeInit().catch(err => {
     console.log(err);
@@ -31,15 +33,31 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: 'We\'re no strangers to love ' +
+        'You know the rules and so do I ' +
+        'A full commitment\'s what I\'m thinking of ' +
+        'You wouldn\'t get this from any other guy ' +
+        'I just wanna tell you how I\'m feeling ' +
+        'Gotta make you understand ' +
+        'Never gonna give you up ' +
+        'Never gonna let you down ' +
+        'Never gonna run around and desert you ' +
+        'Never gonna make you cry ' +
+        'Never gonna say goodbye ' +
+        'Never gonna tell a lie and hurt you',
+    resave: false
+}));
+
 app.use('/', indexRouter);
 app.use('/employees', empRouter);
 app.use('/departments', deptRouter);
 app.use('/contracts_departments', contDeptRouter);
 app.use('/contracts', contRouter);
-app.use('/api/employees',empApiRouter);
-app.use('/api/departments',deptApiRouter);
-app.use('/api/contracts',contApiRouter);
-app.use('/api/deptconts',deptContApiRouter);
+app.use('/api/employees', empApiRouter);
+app.use('/api/departments', deptApiRouter);
+app.use('/api/contracts', contApiRouter);
+app.use('/api/deptconts', deptContApiRouter);
 
 
 // catch 404 and forward to error handler

@@ -50,12 +50,6 @@ const Employee = sequalize.define('Employee', {
         type: Sequalize.DATE,
         allowNull: true,
         validate: {
-            // validator: {
-            //     function(dateFrom, dateTo) {
-            //         return dateTo < dateFrom;
-            //     },
-            //     msg: "Termination date cannot be lower than employment date!"
-            // },
             isDate: {
                 msg: "Provide a valid date!"
             }
@@ -73,13 +67,6 @@ const Employee = sequalize.define('Employee', {
                 args: [2, 15],
                 msg: "Field should contain between 2 to 15 characters!"
             },
-            // validator: {
-            //     function(phone) {
-            //         let re = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
-            //         return re.test(phone);
-            //     },
-            //     msg: "Field should contain correct phone number!"
-            // }
         }
     },
     email: {
@@ -98,6 +85,10 @@ const Employee = sequalize.define('Employee', {
                 msg: "Field should contain correct email address!"
             }
         }
+    },
+    password: {
+        type: Sequalize.STRING,
+        allowNull: false
     }
 });
 module.exports = Employee;

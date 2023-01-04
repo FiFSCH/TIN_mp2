@@ -35,7 +35,7 @@ module.exports = () => {
         onDelete: 'CASCADE'
     });
 
-    let allEmps, allDepts, allConts;
+    let allEmps, allDepts, allConts, allDeptConts;
     return sequelize.query('SET FOREIGN_KEY_CHECKS = 0').then(function () {
         sequelize.sync({force: true})
             .then(() => {
@@ -51,7 +51,8 @@ module.exports = () => {
                         phoneNumber: '2137694200',
                         email: 'johnDoe@email.com',
                         supervisedBy: null,
-                        idDepartment: null
+                        idDepartment: 1,
+                        password: 'strong_password'
                     },
                     {
                         firstName: 'John2',
@@ -61,7 +62,8 @@ module.exports = () => {
                         phoneNumber: '4206921370',
                         email: 'john2Doe2@email.com',
                         supervisedBy: 1,
-                        idDepartment: null
+                        idDepartment: 2,
+                        password: 'password'
                     }
                 ]).then(() => {
                     return Employee.findAll();
@@ -97,6 +99,9 @@ module.exports = () => {
             } else {
                 return conts;
             }
+        }).then(conts2 => {
+            allConts = conts2;
+            return DepartmentContract.findAll();
         }).then(deptsConts => {
             if (!deptsConts || deptsConts.length === 0) {
                 return DepartmentContract.bulkCreate([
@@ -108,7 +113,8 @@ module.exports = () => {
             } else {
                 return deptsConts;
             }
+        }).then(deptConts2 => {
+            allDeptConts = deptConts2;
         });
-
     });
 };
