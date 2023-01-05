@@ -1,6 +1,7 @@
 const Employee = require('../../../Model/sequelize/Employee');
 const Department = require('../../../Model/sequelize/Department');
 const sequelize = require("sequelize");
+const authUtil = require('../../../util/authUtils');
 
 exports.getEmployees = () => {
     return Employee.findAll();
@@ -28,6 +29,7 @@ exports.createEmployee = (data) => {
         dateTo: (data.employedTo == '') ? null : data.employedTo,
         phoneNumber: data.phone,
         email: data.email,
+        password: authUtil.hashPassword(data.password),
         supervisedBy: (data.supervisors == '' || data.supervisors == ' ') ? null : data.supervisors,
         idDepartment: data.departments
     });
@@ -40,10 +42,15 @@ exports.updateEmployee = (idEmp, data) => {
         dateTo: (data.employedTo == '') ? null : data.employedTo,
         phoneNumber: data.phone,
         email: data.email,
+        password: authUtil.hashPassword(data.password),
         supervisedBy: (data.supervisors == '') ? null : data.supervisors,
         idDepartment: data.departments
     }, {where: {idEmployee: idEmp}});
 };
 exports.deleteEmployee = (idEmp) => {
     return Employee.destroy({where: {idEmployee: idEmp}});
+};
+
+exports.findByEmail = (email) => {
+    return Employee.findOne({where: {email: email}});
 };

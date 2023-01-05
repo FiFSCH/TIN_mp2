@@ -4,6 +4,7 @@ const Employee = require('../../Model/sequelize/Employee');
 const Department = require('../../Model/sequelize/Department');
 const Contract = require('../../Model/sequelize/Contract');
 const DepartmentContract = require('../../Model/sequelize/Department_Contract');
+const authUtil = require('../../util/authUtils');
 
 module.exports = () => {
     Employee.hasMany(Employee, {
@@ -52,7 +53,7 @@ module.exports = () => {
                         email: 'johnDoe@email.com',
                         supervisedBy: null,
                         idDepartment: 1,
-                        password: 'strong_password'
+                        password: authUtil.hashPassword('strong_password')
                     },
                     {
                         firstName: 'John2',
@@ -63,7 +64,7 @@ module.exports = () => {
                         email: 'john2Doe2@email.com',
                         supervisedBy: 1,
                         idDepartment: 2,
-                        password: 'password'
+                        password: authUtil.hashPassword('password')
                     }
                 ]).then(() => {
                     return Employee.findAll();

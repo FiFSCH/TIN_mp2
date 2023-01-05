@@ -219,12 +219,48 @@ textarea {
 .form select,
 .form input[type="text"],
 .form input[type="date"],
-.form input[type="email"] {
+.form input[type="email"],
+.form input[type="password"]{
     border: 1px solid #7f8c8d;
     color: #2c3e50;
     border-radius: 5px;
     padding: 0.5rem;
     width: 100%;
+}
+.loginField {
+    display: block;
+    border: 1px solid #7f8c8d;
+    color: #2c3e50;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+}
+.loggedAs{
+    display: block;
+}
+.loginButton {
+    float: right;
+    margin-top: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #27ae60;
+    border-radius: 10px;
+}
+#loginErrors{
+    color: red;
+}
+
+#logoutButton {
+    margin-top: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #e33636;
+    border-radius: 10px;
+}
+#logoutButton:hover{
+    background-color: #e67575;
+}
+
+.loginButton:hover{
+    background-color: #2ecc71;
 }
 
 .form label {
@@ -337,4 +373,7 @@ textarea {
     nav ul li {
         flex-basis: 100%;
     }
+}
+#logo{
+    border-radius: 5px;
 }

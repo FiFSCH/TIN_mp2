@@ -6,7 +6,9 @@
         <tr>
             <th>Name</th>
             <th>Location</th>
-            <th>Options</th>
+            <% if(loggedUser){ %>
+                <th>Options</th>
+            <% } %>
         </tr>
         </thead>
         <tbody>
@@ -14,18 +16,24 @@
             <tr>
                 <td data-label="Name"><%= dept.name %></td>
                 <td data-label="Location"><%= dept.location %></td>
-                <td>
-                    <ul class="list-actions">
-                        <li><a href="/departments/details/<%= dept.idDepartment %>" class="list-actions-button-details">Details</a>
-                        </li>
-                        <li><a href="/departments/delete/<%= dept.idDepartment %>" class="list-actions-button-delete"
-                               onclick="return confirm('Are you sure?')">Delete</a></li>
-                    </ul>
-                </td>
+                <% if(loggedUser){ %>
+                    <td>
+                        <ul class="list-actions">
+                            <li><a href="/departments/details/<%= dept.idDepartment %>"
+                                   class="list-actions-button-details">Details</a>
+                            </li>
+                            <li><a href="/departments/delete/<%= dept.idDepartment %>"
+                                   class="list-actions-button-delete"
+                                   onclick="return confirm('Are you sure?')">Delete</a></li>
+                        </ul>
+                    </td>
+                <% } %>
             </tr>
         <% } %>
         </tbody>
     </table>
-    <p><a href="/departments/add" class="button-add"> Add new department </a></p>
+    <% if(loggedUser){ %>
+        <p><a href="/departments/add" class="button-add"> Add new department </a></p>
+    <% } %>
 </main>
 <%- include('../../fragments/footer.ejs') %>

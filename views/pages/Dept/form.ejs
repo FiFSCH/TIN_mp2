@@ -29,7 +29,7 @@
                 <%= validationErrors.find(e => e.path.includes('location')).message %>
             <% } %>
         </span>
-        <% if(formMode == 'showDetails'){ %>
+        <% if(formMode == 'showDetails' && loggedUser){ %>
             <div class="form-buttons">
                 <a href="/departments/edit/<%= dept.idDepartment %>" class="list-actions-button-edit">
                     Edit

@@ -15,6 +15,7 @@ const deptApiRouter = require('./routes/api/DepartmentApiRoute');
 const contApiRouter = require('./routes/api/ContractApiRoute');
 const deptContApiRouter = require('./routes/api/DeptContApiRoute');
 const session = require('express-session');
+const authUtil = require('./util/authUtils');
 
 
 sequelizeInit().catch(err => {
@@ -49,15 +50,24 @@ app.use(session({
     resave: false
 }));
 
+app.use((req, res, next) => {
+    const loggedUser = req.session.loggedUser;
+    res.locals.loggedUser = loggedUser;
+    if (!res.locals.loginError) {
+        res.locals.loginError = undefined;
+    }
+    next();
+});
+
 app.use('/', indexRouter);
-app.use('/employees', empRouter);
+app.use('/employees', authUtil.permitAuthenticatedUser, empRouter);
 app.use('/departments', deptRouter);
-app.use('/contracts_departments', contDeptRouter);
-app.use('/contracts', contRouter);
-app.use('/api/employees', empApiRouter);
-app.use('/api/departments', deptApiRouter);
-app.use('/api/contracts', contApiRouter);
-app.use('/api/deptconts', deptContApiRouter);
+app.use('/contracts_departments', authUtil.permitAuthenticatedUser, contDeptRouter);
+app.use('/contracts', authUtil.permitAuthenticatedUser, contRouter);
+app.use('/api/employees', /*authUtil.permitAuthenticatedUser,*/empApiRouter);
+app.use('/api/departments',/*authUtil.permitAuthenticatedUser,*/ deptApiRouter);
+app.use('/api/contracts',/*authUtil.permitAuthenticatedUser,*/ contApiRouter);
+app.use('/api/deptconts',/*authUtil.permitAuthenticatedUser,*/ deptContApiRouter);
 
 
 // catch 404 and forward to error handler

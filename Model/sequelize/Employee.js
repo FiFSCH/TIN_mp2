@@ -88,7 +88,16 @@ const Employee = sequalize.define('Employee', {
     },
     password: {
         type: Sequalize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required!"
+            },
+            len: {
+                args: [5, 60],
+                msg: "Field should contain between 5 to 60 characters!"
+            }
+        }
     }
 });
 module.exports = Employee;

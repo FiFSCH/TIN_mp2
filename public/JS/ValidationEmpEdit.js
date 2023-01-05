@@ -5,6 +5,7 @@ const emailInput = document.getElementById("email");
 const deptInput = document.getElementById("dept");
 const employedFromInput = document.getElementById("employedFrom");
 const employedToInput = document.getElementById("employedTo");
+const passwordInput = document.getElementById('password');
 
 const errorFname = document.getElementById("errorFname");
 const errorLname = document.getElementById("errorLname");
@@ -13,9 +14,10 @@ const errorEmail = document.getElementById("errorEmail");
 const errorDept = document.getElementById("errorDept");
 const errorEmployedFrom = document.getElementById("errorEmployedSince");
 const errorEmployedTo = document.getElementById("errorEmployedTo");
+const errorPassword = document.getElementById('errorPassword');
 
 function validateForm() {
-    resetErrors([fnameInput, lnameInput, phoneInput, emailInput, deptInput, employedFromInput, employedToInput], [errorFname, errorLname, errorPhone, errorEmail, errorDept, errorEmployedFrom, errorEmployedTo]);
+    resetErrors([fnameInput, lnameInput, phoneInput, emailInput, deptInput, employedFromInput, employedToInput,passwordInput], [errorFname, errorLname, errorPhone, errorEmail, errorDept, errorEmployedFrom, errorEmployedTo,errorPassword]);
     let valid = true;
     if (!checkRequired(fnameInput.value)) {
         valid = false;
@@ -81,6 +83,15 @@ function validateForm() {
             employedToInput.classList.add("error-input");
             errorEmployedTo.innerText = "Termination date cannot be lower than employment date!";
         }
+    }
+    if (!checkRequired(passwordInput.value)) {
+        valid = false;
+        passwordInput.classList.add("error-input");
+        errorPassword.innerText = "This field is required!";
+    } else if (!checkTxtLengthRange(passwordInput.value, 5, 60)) {
+        valid = false;
+        passwordInput.classList.add("error-input");
+        errorPassword.innerText = "Field should contain between 5 to 60 characters!";
     }
     return valid;
 }
