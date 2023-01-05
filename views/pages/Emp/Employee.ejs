@@ -1,35 +1,35 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Employees</h2>
+    <h2><%= __('nav.employees') %></h2>
     <table id="EmpsList" class="table-list">
         <thead>
         <tr>
-            <th>First name</th>
-            <th>Lastname</th>
-            <th>Email</th>
-            <th>Phone number</th>
-            <th>Options</th>
+            <th><%= __('emp.fields.firstName') %></th>
+            <th><%= __('emp.fields.lastname') %></th>
+            <th><%= __('emp.fields.email') %></th>
+            <th><%= __('emp.fields.phone-number') %></th>
+            <th><%= __('list.options.title') %></th>
         </tr>
         </thead>
         <tbody>
         <% for (let emp of emps){ %>
             <tr>
-                <td data-label="First Name"><%= emp.firstName %></td>
-                <td data-label="Lastname"><%= emp.lastName %></td>
-                <td data-label="Email"><%= emp.email %></td>
-                <td data-label="Phone number"><%= emp.phoneNumber %></td>
+                <td data-label="<%= __('emp.fields.firstName') %>"><%= emp.firstName %></td>
+                <td data-label="<%= __('emp.fields.lastname') %>"><%= emp.lastName %></td>
+                <td data-label="<%= __('emp.fields.email') %>"><%= emp.email %></td>
+                <td data-label="<%= __('emp.fields.phone-number') %>"><%= emp.phoneNumber %></td>
                 <td>
                     <ul class="list-actions">
-                        <li><a href="/employees/details/<%= emp.idEmployee %>" class="list-actions-button-details">Details</a>
+                        <li><a href="/employees/details/<%= emp.idEmployee %>" class="list-actions-button-details"><%= __('list.options.details') %></a>
                         </li>
                         <li><a href="/employees/delete/<%= emp.idEmployee %>" class="list-actions-button-delete"
-                               onclick="return confirm('Are you sure?')">Delete</a></li>
+                               onclick="return confirm('<%= __('confirm') %>')"><%= __('list.options.delete') %></a></li>
                     </ul>
                 </td>
             </tr>
         <% } %>
         </tbody>
     </table>
-    <p><a href="/employees/add" class="button-add"> Add new employee </a></p>
+    <p><a href="/employees/add" class="button-add"> <%= __('emp.list.addNew') %> </a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

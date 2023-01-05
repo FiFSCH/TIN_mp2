@@ -1,32 +1,32 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Contracts</h2>
+    <h2><%= __('nav.contracts') %></h2>
     <table id="ContractsList" class="table-list">
         <thead>
         <tr>
-            <th>Description</th>
-            <th>Start date</th>
-            <th>Due date</th>
-            <th>Options</th>
+            <th><%= __('cont.fields.desc') %></th>
+            <th><%= __('cont.fields.start') %></th>
+            <th><%= __('cont.fields.end') %></th>
+            <th><%= __('list.options.title') %></th>
         </tr>
         </thead>
         <tbody>
         <%for(let cont of conts){%>
         <tr>
-            <td data-label="Description"><%=cont.description%></td>
-            <td data-label="Start date"><%=cont.startDate.toISOString().split('T')[0]%></td>
-            <td data-label="Due date"><%=(cont.dueDate==null || cont.dueDate == '') ? '' : cont.dueDate.toISOString().split('T')[0]%></td>
+            <td data-label="<%= __('cont.fields.desc') %>"><%=cont.description%></td>
+            <td data-label="<%= __('cont.fields.start') %>"><%=cont.startDate.toISOString().split('T')[0]%></td>
+            <td data-label="<%= __('cont.fields.end') %>"><%=(cont.dueDate==null || cont.dueDate == '') ? '' : cont.dueDate.toISOString().split('T')[0]%></td>
             <td>
                 <ul class="list-actions">
-                    <li><a href="/contracts_departments/details/<%=cont.idContract%>" class="list-actions-button-details">Details</a></li>
+                    <li><a href="/contracts_departments/details/<%=cont.idContract%>" class="list-actions-button-details"><%= __('list.options.details') %></a></li>
                     <li><a href="/contracts_departments/delete/<%=cont.idContract%>" class="list-actions-button-delete"
-                           onclick="return confirm('Are you sure?')">Delete</a></li>
+                           onclick="return confirm('<%= __('confirm') %>')"><%= __('list.options.delete') %></a></li>
                 </ul>
             </td>
         </tr>
         <%}%>
         </tbody>
     </table>
-    <p><a href="/contracts_departments/add" class="button-add"> Add new contract </a></p>
+    <p><a href="/contracts_departments/add" class="button-add"><%= __('cont.list.addNew') %></a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

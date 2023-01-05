@@ -4,11 +4,11 @@
     <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm();" novalidate>
         <label for="IdDept"></label>
         <input type="hidden" name="IdDept" value="<%= dept.idDepartment %>">
-        <label for="name">Department name:
+        <label for="name"><%= __('dept.fields.name') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
-        <input type="text" id="name" name="name" placeholder="Name"
+        <input type="text" id="name" name="name" placeholder="<%= __('dept.fields.name') %>"
                value="<%= dept.name %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
                class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>">
         <span id="errorDeptName" class="errors-text">
@@ -16,11 +16,11 @@
                 <%= validationErrors.find(e => e.path.includes('name')).message %>
             <% } %>
         </span>
-        <label for="location">Department location:
+        <label for="location"><%= __('dept.fields.loc') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
-        <input type="text" id="location" name="location" placeholder="Location"
+        <input type="text" id="location" name="location" placeholder="<%= __('dept.fields.loc') %>"
                value="<%= dept.location %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> required
                class="<%= validationErrors.find(e => e.path.includes('location')) ? 'error-input' : '' %>">
 
@@ -32,7 +32,7 @@
         <% if(formMode == 'showDetails' && loggedUser){ %>
             <div class="form-buttons">
                 <a href="/departments/edit/<%= dept.idDepartment %>" class="list-actions-button-edit">
-                    Edit
+                    <%= __('form.options.edit') %>
                 </a>
             </div>
         <% } %>
@@ -40,34 +40,34 @@
             <% if (formMode != 'showDetails') { %>
                 <input type="submit" value="<%= btnLabel %>" class="button-submit">
                 <a href="/departments" class="button-cancel">
-                    Cancel
+                    <%= __('form.options.Cancel') %>
                 </a>
             <% } else { %>
-                <a class="button-cancel" href="/departments">Go back</a>
+                <a class="button-cancel" href="/departments"><%= __('form.options.return') %></a>
             <% } %>
         </div>
     </form>
     <% if(formMode == 'showDetails'){ %>
-        <h3>Contracts</h3>
+        <h3><%= __('cont.list.title') %></h3>
         <table id="contracts" class="table-list-resDept">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Description</th>
+                <th><%= __('cont.fields.desc') %></th>
             </tr>
             </thead>
             <tbody>
             <% if (contracts.length <= 0) { %>
                 <tr>
-                    <td data-label="Department">-------------</td>
-                    <td data-label="Location">--------------</td>
+                    <td data-label="<%= __('dept.fields.name') %>">-------------</td>
+                    <td data-label="<%= __('dept.fields.loc') %>">--------------</td>
                 </tr>
             <% }else{for(let cont of contracts) { %>
                 <tr>
                     <td data-label="ID"><a
                                 href="/contracts_departments/details/<%= cont.idContract %>"><%= cont.idContract %></a>
                     </td>
-                    <td data-label="Description"><%= cont.description %></td>
+                    <td data-label="<%= __('cont.fields.desc') %>"><%= cont.description %></td>
                 </tr>
             <% }} %>
             </tbody>

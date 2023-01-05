@@ -1,30 +1,30 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Departments</h2>
+    <h2><%= __('nav.departments') %></h2>
     <table id="DeptsList" class="table-list">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Location</th>
+            <th><%= __('dept.fields.name') %></th>
+            <th><%= __('dept.fields.loc') %></th>
             <% if(loggedUser){ %>
-                <th>Options</th>
+                <th><%= __('list.options.title') %></th>
             <% } %>
         </tr>
         </thead>
         <tbody>
         <% for (let dept of depts){ %>
             <tr>
-                <td data-label="Name"><%= dept.name %></td>
-                <td data-label="Location"><%= dept.location %></td>
+                <td data-label="<%= __('dept.fields.name') %>"><%= dept.name %></td>
+                <td data-label="<%= __('dept.fields.loc') %>"><%= dept.location %></td>
                 <% if(loggedUser){ %>
                     <td>
                         <ul class="list-actions">
                             <li><a href="/departments/details/<%= dept.idDepartment %>"
-                                   class="list-actions-button-details">Details</a>
+                                   class="list-actions-button-details"><%= __('list.options.details') %></a>
                             </li>
                             <li><a href="/departments/delete/<%= dept.idDepartment %>"
                                    class="list-actions-button-delete"
-                                   onclick="return confirm('Are you sure?')">Delete</a></li>
+                                   onclick="return confirm('<%= __('confirm') %>')"><%= __('list.options.delete') %></a></li>
                         </ul>
                     </td>
                 <% } %>
@@ -33,7 +33,7 @@
         </tbody>
     </table>
     <% if(loggedUser){ %>
-        <p><a href="/departments/add" class="button-add"> Add new department </a></p>
+        <p><a href="/departments/add" class="button-add"><%= __('dept.list.addNew') %></a></p>
     <% } %>
 </main>
 <%- include('../../fragments/footer.ejs') %>

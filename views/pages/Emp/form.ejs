@@ -4,7 +4,7 @@
     <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm();" novalidate>
         <label for="empId"></label>
         <input type="hidden" name="empId" value="<%= emp.idEmployee %>">
-        <label for="fname">First name:
+        <label for="fname"><%= __('emp.fields.firstName') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
@@ -16,7 +16,7 @@
                 <%= validationErrors.find(e => e.path.includes('firstName')).message %>
             <% } %>
         </span>
-        <label for="lname">Lastname:
+        <label for="lname"><%= __('emp.fields.lastname') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
@@ -28,7 +28,7 @@
                 <%= validationErrors.find(e => e.path.includes('lastName')).message %>
             <% } %>
         </span>
-        <label for="employedFrom">Employed since:
+        <label for="employedFrom"><%= __('emp.fields.employed-since') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
@@ -40,7 +40,7 @@
                 <%= validationErrors.find(e => e.path.includes('dateFrom')).message %>
             <% } %>
         </span>
-        <label for="employedTo">Employment termination: </label>
+        <label for="employedTo"><%= __('emp.fields.employment-termination') %>: </label>
         <input type="date" id="employedTo" name="employedTo"
                value="<%= (emp.dateTo == null) ? '' : emp.dateTo.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
                class="<%= validationErrors.find(e => e.path.includes('dateTo')) ? 'error-input' : '' %>">
@@ -49,7 +49,7 @@
                 <%= validationErrors.find(e => e.path.includes('dateTo')).message %>
             <% } %>
         </span>
-        <label for="phone">Phone number:
+        <label for="phone"><%= __('emp.fields.phone-number') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
@@ -61,7 +61,7 @@
                 <%= validationErrors.find(e => e.path.includes('phoneNumber')).message %>
             <% } %>
         </span>
-        <label for="email">Email address:
+        <label for="email"><%= __('emp.fields.email') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
@@ -74,7 +74,7 @@
             <% } %>
         </span>
         <% if(formMode == 'CreateNew' || formMode == 'edit'){ %>
-        <label for="password">Password:
+        <label for="password"><%= __('emp.fields.password') %>:
             <span class="required-field">*</span>
         </label>
         <input type="password" id="password" name="password"
@@ -85,16 +85,16 @@
                 <%= validationErrors.find(e => e.path.includes('password')).message %>
             <% } %>
         </span>
-            <label for="supervisors">Supervisor: </label>
+            <label for="supervisors"><%= __('emp.fields.supervisor') %>: </label>
             <select name="supervisors" id="supervisors">
-                <option disabled selected>-- Supervisors --</option>
+                <option disabled selected>-- <%= __('emp.fields.supervisors') %> --</option>
                 <% for(let tmp of emps){ %>
                     <option value="<%= tmp.idEmployee %>"><%= tmp.firstName %> <%= tmp.lastName %></option>
                 <% } %>
             </select>
-            <label for="departments">Department:</label>
+            <label for="departments"><%= __('emp.fields.department') %>:</label>
             <select name="departments" id="departments">
-                <option disabled selected>-- departments --</option>
+                <option disabled selected>-- <%= __('nav.departments') %> --</option>
                 <% for(let tmp of depts){ %>
                     <option value="<%= tmp.idDepartment %>"><%= tmp.name %> <%= tmp.location %></option>
                 <% } %>
@@ -102,17 +102,17 @@
         <% } %>
         <% if (formMode == 'showDetails') { %>
             <label for="supervisor"><a
-                        href="/employees/details/<%= supervisor.idEmployee %>">Supervisor: </a></label>
+                        href="/employees/details/<%= supervisor.idEmployee %>"><%= __('emp.fields.supervisor') %>: </a></label>
             <input type="text" id="supervisor" name="supervisor"
                    value="<%= supervisor.firstName %> <%= supervisor.lastName %>" disabled required>
-            <label for="dept"><a href="/departments/details/<%= department.idDepartment %>">Department:
+            <label for="dept"><a href="/departments/details/<%= department.idDepartment %>"><%= __('emp.fields.department') %>:
                 </a></label>
             <input type="text" name="dept" id="dept"
                    value="<%= department.name %>  <%= department.location %>" disabled required>
             <span id="errorDept" class="errors-text"></span>
             <div class="form-buttons">
                 <a href="/employees/edit/<%= emp.idEmployee %>" class="list-actions-button-edit">
-                    Edit
+                    <%= __('form.options.edit') %>
                 </a>
             </div>
         <% } %>
@@ -120,10 +120,10 @@
             <% if (formMode != 'showDetails') { %>
                 <input type="submit" value="<%= btnLabel %>" class="button-submit">
                 <a href="/employees" class="button-cancel">
-                    Cancel
+                    <%= __('form.options.Cancel') %>
                 </a>
             <% } else { %>
-                <a class="button-cancel" href="/employees">Go back</a>
+                <a class="button-cancel" href="/employees"><%= __('form.options.return') %></a>
             <% } %>
         </div>
     </form>

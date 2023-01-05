@@ -74,7 +74,8 @@ main h2 {
     border-bottom: 1px solid #7f8c8d;
     margin-bottom: 2rem;
 }
-h3{
+
+h3 {
     border-bottom: 1px solid #7f8c8d;
 }
 
@@ -220,13 +221,14 @@ textarea {
 .form input[type="text"],
 .form input[type="date"],
 .form input[type="email"],
-.form input[type="password"]{
+.form input[type="password"] {
     border: 1px solid #7f8c8d;
     color: #2c3e50;
     border-radius: 5px;
     padding: 0.5rem;
     width: 100%;
 }
+
 .loginField {
     display: block;
     border: 1px solid #7f8c8d;
@@ -235,31 +237,36 @@ textarea {
     padding: 0.5rem;
     width: 100%;
 }
-.loggedAs{
+
+.loggedAs {
     display: block;
 }
+
 .loginButton {
-    float: right;
+    width: 100%;
     margin-top: 10px;
     padding: 0.5rem 1rem;
     background-color: #27ae60;
     border-radius: 10px;
 }
-#loginErrors{
+
+#loginErrors {
     color: red;
 }
 
 #logoutButton {
     margin-top: 10px;
+    width: 100%;
     padding: 0.5rem 1rem;
     background-color: #e33636;
     border-radius: 10px;
 }
-#logoutButton:hover{
+
+#logoutButton:hover {
     background-color: #e67575;
 }
 
-.loginButton:hover{
+.loginButton:hover {
     background-color: #2ecc71;
 }
 
@@ -358,6 +365,7 @@ textarea {
         width: 120px;
         min-width: 120px;
     }
+
 }
 
 @media all and (max-width: 400px) {
@@ -373,7 +381,9 @@ textarea {
     nav ul li {
         flex-basis: 100%;
     }
+
 }
-#logo{
+
+#logo {
     border-radius: 5px;
 }

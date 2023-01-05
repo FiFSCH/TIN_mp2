@@ -4,7 +4,7 @@
     <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm()" novalidate>
         <label for="IdCont"></label>
         <input type="hidden" name="IdCont" value="<%= deptCont.idContract %>">
-        <label for="desc">Description:
+        <label for="desc"><%= __('cont.fields.desc') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
@@ -16,7 +16,7 @@
                 <%= validationErrors.find(e => e.path.includes('description')).message %>
             <% } %>
         </span>
-        <label for="startDate">Start date:
+        <label for="startDate"><%= __('cont.fields.start') %>:
             <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
             <% } %>
         </label>
@@ -29,7 +29,7 @@
                 <%= validationErrors.find(e => e.path.includes('startDate')).message %>
             <% } %>
         </span>
-        <label for="dueDate">Due date: </label>
+        <label for="dueDate"><%= __('cont.fields.end') %>: </label>
         <input type="date" id="dueDate" name="dueDate"
                value="<%= (deptCont.dueDate == null) ? '' : deptCont.dueDate.toISOString().split('T')[0] %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
                class="<%= validationErrors.find(e => e.path.includes('deptCont')) ? 'error-input' : '' %>">
@@ -39,9 +39,9 @@
             <% } %>
         </span>
         <% if(formMode != 'showDetails'){ %>
-            <label for="deptContName">Responsible department: <span class="required-field">*</span></label>
+            <label for="deptContName"><%= __('cont.fields.respDept') %>: <span class="required-field">*</span></label>
             <select name="IdDept" id="deptContName" required>
-                <option disabled selected value="">--Select department--</option>
+                <option disabled selected value="">--<%= __('nav.departments') %>--</option>
                 <% for(let i = 0; i < departments.length; i++) {
                     let dept = departments[i]; %>
                 <option value="<%= dept.idDepartment %>" label="<%= dept.name + ' ' + dept.location %>"></option>
@@ -52,7 +52,7 @@
         <% if (formMode == 'showDetails') { %>
             <div class="form-buttons">
                 <a href="/contracts_departments/edit/<%= deptCont.idContract %>" class="list-actions-button-edit">
-                    Edit
+                    <%= __('form.options.edit') %>
                 </a>
             </div>
         <% } %>
@@ -60,34 +60,34 @@
             <% if (formMode != 'showDetails') { %>
                 <input type="submit" value="<%= btnLabel %>" class="button-submit">
                 <a href="/contracts" class="button-cancel">
-                    Cancel
+                    <%= __('form.options.Cancel') %>
                 </a>
             <% } else { %>
-                <a class="button-cancel" href="/contracts">Go back</a>
+                <a class="button-cancel" href="/contracts"><%= __('form.options.return') %></a>
             <% } %>
         </div>
     </form>
     <% if(formMode == 'showDetails'){ %>
-        <h3>Department</h3>
+        <h3><%= __('emp.fields.department') %></h3>
         <table id="responsibleDepartment" class="table-list-resDept">
             <thead>
             <tr>
-                <th>Responsible Department</th>
-                <th>Location</th>
+                <th><%= __('cont.fields.respDept') %></th>
+                <th><%= __('dept.fields.loc') %></th>
             </tr>
             </thead>
             <tbody>
             <% if (departments.length <= 0) { %>
                 <tr>
-                    <td data-label="Department">-----------------</td>
-                    <td data-label="Location">-----------------</td>
+                    <td data-label="<%= __('emp.fields.department') %>">-----------------</td>
+                    <td data-label="<%= __('dept.fields.loc') %>">-----------------</td>
                 </tr>
             <% }else{for(let dept of departments) { %>
                 <tr>
-                    <td data-label="Department"><a
+                    <td data-label="<%= __('emp.fields.department') %>"><a
                                 href="/departments/details/<%= dept.idDepartment %>"><%= dept.name %></a>
                     </td>
-                    <td data-label="Location"><%= dept.location %></td>
+                    <td data-label="<%= __('dept.fields.loc') %>"><%= dept.location %></td>
                 </tr>
             <% }} %>
             </tbody>

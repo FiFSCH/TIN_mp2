@@ -14,9 +14,9 @@ exports.showDeptList = (req, res, next) => {
 exports.showAddDeptForm = (req, res, next) => {
     return res.render('pages/Dept/form', {
         dept: {},
-        pageTitle: 'New department',
+        pageTitle: req.__('dept.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Add department',
+        btnLabel: req.__('dept.form.add.btnLabel'),
         formAction: '/departments/add',
         navLocation: 'dept',
         validationErrors: []
@@ -27,9 +27,9 @@ exports.showEditDeptForm = (req, res, next) => {
     return DeptRepository.getDepartmentById(deptId).then(dept => {
         res.render('pages/Dept/form', {
             dept: dept,
-            pageTitle: 'Edit department',
+            pageTitle: req.__('dept.form.edit.pageTitle'),
             formMode: 'edit',
-            btnLabel: 'Edit department',
+            btnLabel: req.__('dept.form.edit.btnLabel'),
             formAction: "/departments/edit",
             navLocation: 'dept',
             validationErrors: []
@@ -42,7 +42,7 @@ exports.showDetailsDeptForm = (req, res, next) => {
         res.render('pages/Dept/form', {
             dept: dept,
             contracts: dept.contracts,
-            pageTitle: 'Department details',
+            pageTitle: req.__('dept.form.details.pageTitle'),
             formMode: 'showDetails',
             formAction: "",
             navLocation: 'dept',
@@ -58,9 +58,9 @@ exports.addDept = (req, res, next) => {
     }).catch(err => {
         res.render('pages/Dept/form', {
             dept: {},
-            pageTitle: 'New department',
+            pageTitle: req.__('dept.form.add.pageTitle'),
             formMode: 'createNew',
-            btnLabel: 'Add department',
+            btnLabel: req.__('dept.form.add.btnLabel'),
             formAction: '/departments/add',
             navLocation: 'dept',
             validationErrors: err.errors
@@ -79,9 +79,9 @@ exports.editDept = (req, res, next) => {
             console.log(tmp);
             res.render('pages/Dept/form', {
                 dept: tmp,
-                pageTitle: 'Edit department',
+                pageTitle: req.__('dept.form.edit.pageTitle'),
                 formMode: 'edit',
-                btnLabel: 'Edit department',
+                btnLabel: req.__('dept.form.edit.btnLabel'),
                 formAction: "/departments/edit",
                 navLocation: 'dept',
                 validationErrors: err.errors

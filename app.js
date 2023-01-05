@@ -16,6 +16,7 @@ const contApiRouter = require('./routes/api/ContractApiRoute');
 const deptContApiRouter = require('./routes/api/DeptContApiRoute');
 const session = require('express-session');
 const authUtil = require('./util/authUtils');
+const i18n = require('i18n');
 
 
 sequelizeInit().catch(err => {
@@ -31,8 +32,25 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
+app.use(cookieParser('secret'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+i18n.configure({
+    locales: ['pl', 'en'],
+    directory: path.join(__dirname, 'locales'),
+    objectNotation: true,
+    cookie: 'tin-lang',
+});
+app.use(i18n.init);
+
+app.use((req, res, next) => {
+    if(!res.locals.lang) {
+        const currentLang = req.cookies['tin-lang'];
+        res.locals.lang = currentLang;
+    }
+    next();
+});
 
 app.use(session({
     secret: 'We\'re no strangers to love ' +

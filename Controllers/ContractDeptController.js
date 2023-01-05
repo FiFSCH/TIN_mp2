@@ -8,9 +8,9 @@ exports.showAddContDeptForm = (req, res, next) => {
         res.render('pages/ContractDept/form', {
             deptCont: {},
             departments: allDepts,
-            pageTitle: 'New contract',
+            pageTitle: req.__('cont.form.add.pageTitle'),
             formMode: 'createNew',
-            btnLabel: 'Add contract',
+            btnLabel: req.__('cont.form.add.btnLabel'),
             formAction: '/contracts_departments/add',
             navLocation: 'cont',
             validationErrors: []
@@ -29,8 +29,8 @@ exports.showEditContDeptForm = (req, res, next) => {
             deptCont: deptCont,
             departments: allDepts,
             formMode: 'edit',
-            pageTitle: 'Edit Contract',
-            btnLabel: 'Edit contract',
+            pageTitle: req.__('cont.form.edit.pageTitle'),
+            btnLabel: req.__('cont.form.edit.btnLabel'),
             formAction: '/contracts_departments/edit',
             navLocation: 'cont',
             validationErrors: []
@@ -44,7 +44,7 @@ exports.showDetailsContDeptForm = (req, res, next) => {
             deptCont: deptCont,
             departments: deptCont.departments,
             formMode: 'showDetails',
-            pageTitle: 'Contract details',
+            pageTitle: req.__('cont.form.details.pageTitle'),
             formAction: '',
             navLocation: 'cont',
             validationErrors: []
@@ -62,9 +62,9 @@ exports.addContract = (req, res, next) => {
             res.render('pages/ContractDept/form', {
                 deptCont: {},
                 departments: allDepts,
-                pageTitle: 'New contract',
+                pageTitle: req.__('cont.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Add contract',
+                btnLabel: req.__('cont.form.add.btnLabel'),
                 formAction: '/contracts_departments/add',
                 navLocation: 'cont',
                 validationErrors: err.errors
@@ -88,8 +88,8 @@ exports.editContract = (req, res, next) => {
                 deptCont: deptCont,
                 departments: allDepts,
                 formMode: 'edit',
-                pageTitle: 'Edit Contract',
-                btnLabel: 'Edit contract',
+                pageTitle: req.__('cont.form.edit.pageTitle'),
+                btnLabel: req.__('cont.form.edit.btnLabel'),
                 formAction: '/contracts_departments/edit',
                 navLocation: 'cont',
                 validationErrors: err.errors
