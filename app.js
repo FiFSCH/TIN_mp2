@@ -17,6 +17,7 @@ const deptContApiRouter = require('./routes/api/DeptContApiRoute');
 const session = require('express-session');
 const authUtil = require('./util/authUtils');
 const i18n = require('i18n');
+var cors = require('cors');
 
 
 sequelizeInit().catch(err => {
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
     next();
 });
 
+
 app.use(session({
     secret: 'We\'re no strangers to love ' +
         'You know the rules and so do I ' +
@@ -82,6 +84,7 @@ app.use('/employees', authUtil.permitAuthenticatedUser, empRouter);
 app.use('/departments', deptRouter);
 app.use('/contracts_departments', authUtil.permitAuthenticatedUser, contDeptRouter);
 app.use('/contracts', authUtil.permitAuthenticatedUser, contRouter);
+app.use(cors());
 app.use('/api/employees', /*authUtil.permitAuthenticatedUser,*/empApiRouter);
 app.use('/api/departments',/*authUtil.permitAuthenticatedUser,*/ deptApiRouter);
 app.use('/api/contracts',/*authUtil.permitAuthenticatedUser,*/ contApiRouter);
@@ -103,5 +106,4 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
 module.exports = app;
