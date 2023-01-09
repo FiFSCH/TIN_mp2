@@ -17,7 +17,7 @@ exports.getDepartmentById = (deptId) => {
 };
 
 exports.createDept = (data) => {
-    console.log(JSON.stringify(data));
+    console.log('repository ',data)
     return Department.create({
         name: data.name,
         location: data.location

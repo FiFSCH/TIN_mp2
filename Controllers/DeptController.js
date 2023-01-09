@@ -53,6 +53,7 @@ exports.showDetailsDeptForm = (req, res, next) => {
 
 exports.addDept = (req, res, next) => {
     const deptData = {...req.body};
+    console.log('Controller ',deptData);
     return DeptRepository.createDept(deptData).then(result => {
         res.redirect("/departments");
     }).catch(err => {
