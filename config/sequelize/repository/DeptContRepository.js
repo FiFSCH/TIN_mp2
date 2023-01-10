@@ -32,8 +32,9 @@ exports.getDeptsByCont = (contId) => {
 };
 
 exports.createDeptCont = (idCont, data) => {
-    console.log(JSON.stringify(data));
+    console.log('DEPT CONT REPO! ',JSON.stringify(data));
     if (idCont !== -1) {
+        console.log("It is -1")
         return DeptCont.create({
             idDepartment: data.IdDept,
             idContract: idCont
