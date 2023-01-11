@@ -18,6 +18,7 @@ const session = require('express-session');
 const authUtil = require('./util/authUtils');
 const i18n = require('i18n');
 var cors = require('cors');
+const authApiRouter = require('./routes/api/AuthApiRoute');
 
 
 sequelizeInit().catch(err => {
@@ -78,9 +79,9 @@ app.use((req, res, next) => {
     }
     next();
 });
-
+app.use('/api/auth',authApiRouter);
 app.use('/', indexRouter);
-app.use('/employees', authUtil.permitAuthenticatedUser, empRouter);
+app.use('/employees', /*authUtil.permitAuthenticatedUser,*/ empRouter);
 app.use('/departments', deptRouter);
 app.use('/contracts_departments', authUtil.permitAuthenticatedUser, contDeptRouter);
 app.use('/contracts', authUtil.permitAuthenticatedUser, contRouter);
