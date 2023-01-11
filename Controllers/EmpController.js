@@ -8,6 +8,25 @@ exports.showEmpList = (req, res, next) => {
         });
     });
 };
+exports.register = (req, res, next) => {
+    let allEmps;
+    return EmpRepository.getEmployees().then(emps => {
+        allEmps = emps;
+        return DeptRepository.getDepartments();
+    }).then(depts => {
+        return res.render('pages/Emp/form', {
+            emp: {},
+            emps: allEmps,
+            depts: depts,
+            pageTitle: req.__('emp.form.add.pageTitle'),
+            formMode: 'CreateNew',
+            btnLabel: req.__('emp.form.add.btnLabel'),
+            formAction: '/employees/add',
+            navLocation: 'emp',
+            validationErrors: []
+        });
+    });
+};
 
 exports.showAddEmpForm = (req, res, next) => {
     let allEmps;

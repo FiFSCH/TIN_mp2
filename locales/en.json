@@ -26,6 +26,7 @@
   "login": {
     "loggedAs": "Logged as:",
     "login": "Login",
+    "register": "Register",
     "logout": "Logout",
     "email": "Email",
     "password": "Password"

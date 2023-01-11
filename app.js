@@ -19,6 +19,7 @@ const authUtil = require('./util/authUtils');
 const i18n = require('i18n');
 var cors = require('cors');
 const authApiRouter = require('./routes/api/AuthApiRoute');
+const RegisterRoute = require('./routes/RegisterRoute');
 
 
 sequelizeInit().catch(err => {
@@ -81,10 +82,11 @@ app.use((req, res, next) => {
 });
 app.use('/api/auth',authApiRouter);
 app.use('/', indexRouter);
-app.use('/employees', /*authUtil.permitAuthenticatedUser,*/ empRouter);
+app.use('/employees', empRouter);
 app.use('/departments', deptRouter);
 app.use('/contracts_departments', authUtil.permitAuthenticatedUser, contDeptRouter);
 app.use('/contracts', authUtil.permitAuthenticatedUser, contRouter);
+app.use('/register',RegisterRoute);
 app.use(cors());
 app.use('/api/employees', /*authUtil.permitAuthenticatedUser,*/empApiRouter);
 app.use('/api/departments',/*authUtil.permitAuthenticatedUser,*/ deptApiRouter);
