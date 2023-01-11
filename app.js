@@ -80,6 +80,7 @@ app.use((req, res, next) => {
     }
     next();
 });
+app.use(cors());
 app.use('/api/auth',authApiRouter);
 app.use('/', indexRouter);
 app.use('/employees', empRouter);
@@ -87,7 +88,6 @@ app.use('/departments', deptRouter);
 app.use('/contracts_departments', authUtil.permitAuthenticatedUser, contDeptRouter);
 app.use('/contracts', authUtil.permitAuthenticatedUser, contRouter);
 app.use('/register',RegisterRoute);
-app.use(cors());
 app.use('/api/employees', /*authUtil.permitAuthenticatedUser,*/empApiRouter);
 app.use('/api/departments',/*authUtil.permitAuthenticatedUser,*/ deptApiRouter);
 app.use('/api/contracts',/*authUtil.permitAuthenticatedUser,*/ contApiRouter);
