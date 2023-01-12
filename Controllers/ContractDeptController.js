@@ -98,7 +98,7 @@ exports.editContract = (req, res, next) => {
     })
 };
 exports.deleteContract = (req, res, next) => {
-    return ContRepository.deleteCont(contId).then(result => {
+    return ContRepository.deleteCont(req.params.IdCont).then(result => {
         res.redirect('/contracts');
     });
 };
