@@ -18,7 +18,6 @@
                 <input type="email" id="loginEmail" name="email" class="loginField">
                 <label for="loginPassword"><%= __('login.password') %>: </label>
                 <input type="password" id="loginPassword" name="password" class="loginField">
-                <button type="button" onclick="location.href = '/register/add'" class="registerButton"><%= __('login.register') %></button>
                 <input type="submit" value="<%= __('login.login') %>" class="loginButton">
                 <span id="loginErrors"><%= loginError ? loginError : '' %></span>
             </form>

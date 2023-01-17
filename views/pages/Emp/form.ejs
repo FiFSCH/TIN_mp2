@@ -1,7 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%= formAction %>" onsubmit="return validateForm();" novalidate>
         <label for="empId"></label>
         <input type="hidden" name="empId" value="<%= emp.idEmployee %>">
         <label for="fname"><%= __('emp.fields.firstName') %>:
