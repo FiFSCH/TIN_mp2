@@ -93,6 +93,9 @@ exports.editDept = (req, res, next) => {
 
 exports.deleteDept = (req, res, next) => {
     const deptId = req.params.IdDept;
+    DeptContRepository.getContsByDept(deptId).then(res => {for(let i = 0; i< res.length; i++){
+        ContRepository.deleteCont(res[i].dataValues.idContract);
+    }});
     return DeptRepository.deleteDept(deptId).then(result => {
         res.redirect("/departments");
     });

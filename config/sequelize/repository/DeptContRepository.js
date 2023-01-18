@@ -1,5 +1,5 @@
 const DeptCont = require('../../../Model/sequelize/Department_Contract');
-
+const Cont = require('../../../Model/sequelize/Contract')
 
 const sequelize = require("sequelize");
 
@@ -32,7 +32,7 @@ exports.getDeptsByCont = (contId) => {
 };
 
 exports.createDeptCont = (idCont, data) => {
-    console.log('DEPT CONT REPO! ',JSON.stringify(data));
+    console.log('DEPT CONT REPO! ', JSON.stringify(data));
     if (idCont !== -1) {
         console.log("It is -1")
         return DeptCont.create({
@@ -45,7 +45,7 @@ exports.createDeptCont = (idCont, data) => {
         idContract: data.idContract
     });
 };
-exports.updateDeptCont = (deptId, contId,data) => {
+exports.updateDeptCont = (deptId, contId, data) => {
     return DeptCont.update({
         idDepartment: data.IdDept,
     }, {
@@ -60,5 +60,5 @@ exports.deleteDeptCont = (deptId, contId) => {
             idDepartment: deptId,
             idContract: contId
         }
-    });
+    })
 };

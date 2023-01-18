@@ -1,7 +1,9 @@
 const Contract = require('../../../Model/sequelize/Contract');
 const Department = require('../../../Model/sequelize/Department');
+const DeptCont = require('./DeptContRepository');
 
 const sequelize = require("sequelize");
+const Cont = require("../../../Model/sequelize/Contract");
 
 exports.getDepartments = () => {
     return Department.findAll();
@@ -17,7 +19,7 @@ exports.getDepartmentById = (deptId) => {
 };
 
 exports.createDept = (data) => {
-    console.log('repository ',data)
+    console.log('repository ', data)
     return Department.create({
         name: data.name,
         location: data.location
