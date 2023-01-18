@@ -16,7 +16,7 @@ module.exports = () => {
     Employee.belongsTo(Employee, {as: 'supervised_by', foreignKey: {name: 'supervisedBy', allowNull: true}});
     Department.hasMany(Employee, {
         as: 'employees',
-        foreignKey: {name: 'idDepartment', allowNull: true},
+        foreignKey: {name: 'idDepartment', allowNull: false},
         constraints: true,
         onDelete: 'CASCADE'
     });

@@ -98,6 +98,14 @@ const Employee = sequalize.define('Employee', {
                 msg: "Field should contain between 5 to 60 characters!"
             }
         }
+    }, idDepartment: {
+        type: Sequalize.INTEGER,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "This field is required!"
+            }
+        }
     }
 });
 module.exports = Employee;

@@ -74,16 +74,16 @@
             <% } %>
         </span>
         <% if(formMode == 'CreateNew' || formMode == 'edit'){ %>
-        <label for="password"><%= __('emp.fields.password') %>:
-        </label>
-        <input type="password" id="password" name="password"
-               value="<%= emp.password %>"  required
-               class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>">
-        <span id="errorPassword" class="errors-text">
-            <% if (validationErrors.find(e => e.path.includes('password'))) { %>
-                <%= validationErrors.find(e => e.path.includes('password')).message %>
-            <% } %>
-        </span>
+            <label for="password"><%= __('emp.fields.password') %>:<span class="required-field">*</span>
+            </label>
+            <input type="password" id="password" name="password"
+                   value="<%= emp.password %>" required
+                   class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>">
+            <span id="errorPassword" class="errors-text">
+                <% if (validationErrors.find(e => e.path.includes('password'))) { %>
+                    <%= validationErrors.find(e => e.path.includes('password')).message %>
+                <% } %>
+            </span>
             <label for="supervisors"><%= __('emp.fields.supervisor') %>: </label>
             <select name="supervisors" id="supervisors">
                 <option disabled selected>-- <%= __('emp.fields.supervisors') %> --</option>
@@ -91,20 +91,30 @@
                     <option value="<%= tmp.idEmployee %>"><%= tmp.firstName %> <%= tmp.lastName %></option>
                 <% } %>
             </select>
-            <label for="departments"><%= __('emp.fields.department') %>:</label>
-            <select name="departments" id="departments">
+            <label for="departments"><%= __('emp.fields.department') %>:
+                <% if(formMode != 'showDetails'){ %><span class="required-field">*</span>
+                <% } %>
+            </label>
+            <select name="departments" id="departments" required
+                    class="<%= validationErrors.find(e => e.path.includes('idDepartment')) ? 'error-input' : '' %>">
                 <option disabled selected>-- <%= __('nav.departments') %> --</option>
                 <% for(let tmp of depts){ %>
                     <option value="<%= tmp.idDepartment %>"><%= tmp.name %> <%= tmp.location %></option>
                 <% } %>
             </select>
-        <% } %>
+        <span id="errorDept" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('idDepartment'))) { %>
+                <%= validationErrors.find(e => e.path.includes('idDepartment')).message %>
+            <% } %>
+            <% } %>
+        </span>
         <% if (formMode == 'showDetails') { %>
             <label for="supervisor"><a
                         href="/employees/details/<%= supervisor.idEmployee %>"><%= __('emp.fields.supervisor') %>: </a></label>
             <input type="text" id="supervisor" name="supervisor"
                    value="<%= supervisor.firstName %> <%= supervisor.lastName %>" disabled required>
-            <label for="dept"><a href="/departments/details/<%= department.idDepartment %>"><%= __('emp.fields.department') %>:
+            <label for="dept"><a
+                        href="/departments/details/<%= department.idDepartment %>"><%= __('emp.fields.department') %>:
                 </a></label>
             <input type="text" name="dept" id="dept"
                    value="<%= department.name %>  <%= department.location %>" disabled required>
