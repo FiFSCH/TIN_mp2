@@ -1,9 +1,9 @@
 const Contract = require('../../../Model/sequelize/Contract');
 const Department = require('../../../Model/sequelize/Department');
-const DeptCont = require('./DeptContRepository');
 
 const sequelize = require("sequelize");
-const Cont = require("../../../Model/sequelize/Contract");
+const DeptContRepository = require("./DeptContRepository");
+const ContRepository = require("./ContractRepository");
 
 exports.getDepartments = () => {
     return Department.findAll();
@@ -29,5 +29,8 @@ exports.updateDept = (idDept, data) => {
     return Department.update(data, {where: {idDepartment: idDept}});
 };
 exports.deleteDept = (idDept) => {
+    DeptContRepository.getContsByDept(idDept).then(res => {for(let i = 0; i< res.length; i++){
+        ContRepository.deleteCont(res[i].dataValues.idContract);
+    }});
     return Department.destroy({where: {idDepartment: idDept}});
 };
